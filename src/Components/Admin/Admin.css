@@ -1,0 +1,242 @@
+/* Admin.css */
+
+.Admin:root {
+ 
+    --ciBlue: #03bcf4;
+    --ciWhite: #ffffff;
+    --ciSecond: #0c1016;
+}
+
+.Admin,
+html {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--ciSecond);
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    color: var(--ciWhite);
+    font-family: "Roboto";
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.Admin.main-container99 {
+    position: relative;
+    margin-top: 2cm; 
+}
+
+.Admin.cards99 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center; 
+    gap: 0.5rem;
+    width: calc(90% + 4cm); 
+    padding: 2rem;
+    margin-top: 2cm; 
+}
+
+.Admin.card99 {
+    position: relative;
+    width: 20rem;
+    height: 15rem;
+    background: radial-gradient(
+    150rem circle at 0 0,
+    rgba(var(--ciBlue), 0),
+    transparent 0%
+    );
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.15s;
+}
+
+.Admin.card99:hover {
+    transform: scale(0.97);
+}
+
+.Admin.card99::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+    60rem circle at var(--xPos) var(--yPos),
+    rgba(var(--ciBlue), 0.1),
+    transparent 35%
+    );
+    opacity: 0;
+    transition: all 0.15s ease-in-out;
+}
+
+.Admin.card-content99 {
+    background-color: #13161c;
+    border-radius: inherit;
+    transition: all 0.25s;
+    height: calc(100% - 0.1rem);
+    width: calc(100% - 0.1rem);
+    box-shadow: 0 0 15px #02c2cf, 0 0 12px #000000;
+    border: 1px solid #00a8db;
+}
+
+.Admin.card99:hover::before {
+    opacity: 1;
+}
+
+.Admin.currently-showing99 {
+    position: absolute;
+    top: -2cm; 
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    color: #03bcf4;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(3, 188, 244, 0.7),
+    0 0 20px rgba(3, 188, 244, 0.7), 0 0 40px rgba(3, 188, 244, 0.7);
+    z-index: 1000;
+}
+
+.Admin.card-title99-0 { /* Title 1 */
+    font-size: 30px;
+    position: absolute;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Admin.card-title99-1 { /* Title 2 */
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Admin.card-title99-2 { /* Title 3 */
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Admin.card-title99-3 { /* Title 4 */
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Admin.card-title99-4 { /* Title 5 */
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Admin.card-title99-5 { /* Title 6 */
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Admin.card-title99-6 { /* Title 7 */
+    position: absolute;
+    text-align: center;
+    font-size: 30px;
+    top: 1cm;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Admin.card-button99 {
+    position: absolute;
+    bottom: 0.5cm;
+    text-align: center;
+}
+
+.Admin.blue-btn99 {
+    position: relative;
+    display: inline-block;
+    padding: 15px 20px; 
+    font-size: 18px; 
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: 0.5s;
+    color: #03bcf4;
+    border: 1.5px solid #03bcf4;
+    border-radius: 7px;
+}
+
+.Admin.blue-btn99::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1.5px solid #03e9f4; 
+    border-radius: 7px; 
+}
+
+.Admin.blue-btn99:hover::before {
+    border-color: #050801; 
+}
+
+.Admin.blue-btn99:hover {
+    background-color: #03bcf4;
+    color: #050801;
+    box-shadow: 0px 0px 5px #03bcf4, 0px 0px 25px #03bcf4, 0px 0px 50px #03bcf4, 0px 0px 100px #03bcf4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.Admin.lower-cards99 {
+    margin-top: 3cm; 
+}
+
+
+
+.card-info99 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    z-index: 1; 
+    opacity: 0; 
+    pointer-events: none; 
+    transition: opacity 0.3s; 
+    
+}
+
+.card99:hover .card-info99 {
+    opacity: 1; 
+    
+}
+

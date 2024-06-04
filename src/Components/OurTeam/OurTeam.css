@@ -1,0 +1,152 @@
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.nav-buttons3 {
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 20px 0; 
+    z-index: 1000; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 1001; 
+}
+
+.nav-button {
+    color: #03bcf4; 
+    padding: 1vh 2vw; 
+    font-size: 2vh; 
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s; 
+    z-index: 1001; 
+    
+}
+
+.nav-button:hover {
+    color: #fff; 
+    text-shadow: 0 0 1vw #03bcf4, 0 0 2vw #03bcf4, 0 0 4vw #03bcf4, 0 0 8vw #03bcf4, 0 0 16vw #03bcf4; 
+    border-bottom: 0.3vh solid #03bcf4; 
+}
+
+.imagecontainer3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container3 {
+    position: relative;
+    margin-bottom: 3cm; 
+    margin-right: 20cm; 
+    display: flex; 
+    justify-content: center; 
+}
+
+.image3 {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(0.3); 
+    margin-top: 7cm;
+}
+
+.footer-links {
+    margin-top: 5cm; 
+}
+
+
+body {
+    background-color: #000;
+}
+
+.site-footer3 {
+    background-color: #03bcf4; 
+    padding: 60px 0 20px; 
+    font-size: 15px;
+    line-height: 24px;
+    color: #737373;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2cm; 
+    height: 50vh; 
+}
+
+.site-footer3 h6 {
+    color: #000;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 0.5cm; 
+    margin-bottom: 0.2cm; 
+    letter-spacing: 2px;
+}
+
+.site-footer3 button {
+    color: #000;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-size: initial; 
+    width: 80%; 
+    text-align: center; 
+    margin-top: 0.5cm; 
+}
+
+.site-footer3 button:hover {
+    color: #fff;
+}
+
+.footer-links3 {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+    gap: 1cm; 
+}
+
+.footer-links3 li {
+    display: block;
+}
+
+.footer-links3 {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between; 
+    width: 80%; 
+    margin: 0 auto; 
+}
+
+.site-footer3 hr {
+    display: none; 
+}
+
+
+
+
+.image-container3 {
+    position: relative;
+    margin-bottom: 3cm; 
+    margin-right: 20cm; 
+    display: flex; 
+    justify-content: center; 
+    color: white; 
+}
+
+.image-container3 p {
+    margin: 0; 
+    margin-top: 15cm; 
+}

@@ -1,0 +1,254 @@
+.page {
+    margin-top: 5cm;
+    background:linear-gradient(#00515f,#000000);
+    display: flex;
+    align-items: flex-start;
+    height: 150vh;
+}
+
+.film-info {
+    display: flex;
+    margin-right: 300px;
+}
+
+.film-image {
+    margin-right: 50px;
+    margin-top: 80px;
+    margin-left: 30px;
+}
+
+.film-details h2 {
+    color: #03bcf4;
+    margin-top: 100px;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(3, 188, 244, 0.7),
+    0 0 20px rgba(3, 188, 244, 0.7), 0 0 40px rgba(3, 188, 244, 0.7);
+}
+
+.film-details h3 {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.film-details p {
+    color: #03bcf4;
+    font-size: 22px;
+    margin-top: 50px;
+    text-shadow: 0 0 10px rgba(3, 188, 244, 0.7),
+    0 0 20px rgba(3, 188, 244, 0.7), 0 0 40px rgba(3, 188, 244, 0.7);
+}
+
+.film-details p1 {
+    color: white;
+    font-size: 14px;
+}
+
+.film-image p {
+    color: white;
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+.film-info img {
+    width: 300px;
+    height: auto;
+    border-radius: 30px;
+}
+
+.vizyon-info img,
+.tur-info img,
+.time-info img {
+    width: 30px;
+    height: auto;
+    border-radius: 30px;
+}
+
+.vizyon-info,
+.tur-info,
+.time-info {
+    display: flex;
+    align-items: center;
+}
+
+.imdb-rating {
+    margin-top: 20px;
+    color: gold;
+    font-size: 18px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column; /* Butonları dikey olarak düzenler */
+    margin-top: 100px; /* Yukarıdan boşluk */
+    align-items: flex-end; /* Butonları sağa hizalar */
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column; /* Butonları dikey olarak düzenle */
+    margin-right: 100px; /* Sağdan boşluk */
+}
+
+.actions button,
+.buttons button {
+    margin-top: 50px; /* Butonun yukarıdan boşluğunu ayarla */
+    margin-bottom: 20px; /* Butonun aşağıdan boşluğunu ayarla */
+    padding: 10px 20px;
+    background-color: #03bcf4;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: 0.5s;
+    position: relative; /* Mutlak konumu değiştirdim */
+    right: 0; /* Sağa sıfır ayarladım */
+}
+
+.actions button::before,
+.buttons button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1.5px solid #03e9f4;
+    border-radius: 7px;
+}
+
+.actions button:hover::before,
+.buttons button:hover::before {
+    border-color: #050801;
+}
+
+.actions button:hover,
+.buttons button:hover {
+    background-color: #03bcf4;
+    color: #050801;
+    box-shadow: 0px 0px 5px #03bcf4, 0px 0px 25px #03bcf4, 0px 0px 50px #03bcf4, 0px 0px 100px #03bcf4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+
+
+.rating {
+    margin-top: 50px;
+    color: white;
+}
+
+.stars {
+    color: gold;
+}
+
+.stars span {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.stars span.filled {
+    color: gold;
+}
+
+.neon-blue {
+    color: #03bcf4;
+}
+
+.nav-buttons5 {
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-button {
+    color: #03bcf4;
+    padding: 1vh 2vw;
+    font-size: 2vh;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-button:hover {
+    color: #fff;
+    text-shadow: 0 0 1vw #03bcf4, 0 0 2vw #03bcf4, 0 0 4vw #03bcf4, 0 0 8vw #03bcf4, 0 0 16vw #03bcf4;
+    border-bottom: 0.3vh solid #03bcf4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.site-footer5 {
+    margin-top: 50;
+    position: absolute;
+    bottom: -100px; /* Footer'ı sayfanın altından 20 piksel yukarı taşı */
+    left: 0;
+    width: 100%;
+    background-color: #03bcf4;
+    padding: 40px 0;
+    font-size: 15px;
+    line-height: 24px;
+    color: #fff;
+    text-align: center;
+    z-index: 1000;
+}
+
+
+
+.site-footer5 h6 {
+    color: #000000;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.site-footer5 button {
+    color: #000000;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-size: initial;
+    text-align: center;
+}
+
+.site-footer5 button:hover {
+    color: #fff;
+}
+
+.footer-links5 {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+}
+
+.footer-links5 li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.site-footer5 hr {
+    display: none;
+}
+
+
+
+

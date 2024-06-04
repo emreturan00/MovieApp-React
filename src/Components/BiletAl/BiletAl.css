@@ -1,0 +1,197 @@
+body {
+  display: grid;
+  place-items: center;
+
+}
+
+.bilet-al-container {
+  margin-top: 5cm;
+  position: relative;
+  max-width: 100vw; /* Sayfa genişliğini ekran genişliği kadar sınırla */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: linear-gradient(#00515f, #000000);
+  color: #03bcf4;
+  
+}
+
+
+.bilet-al-container h1 {
+  color: #03bcf4;
+  font-size: 24px;
+  font-family: 'Arial', sans-serif;
+  align-items: center; /* Yatayda ortalama */
+  text-shadow: 0 0 10px rgba(3, 188, 244, 0.7),
+  0 0 20px rgba(3, 188, 244, 0.7), 0 0 40px rgba(3, 188, 244, 0.7);
+}
+
+
+.secimler {
+  margin-top: 5cm;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+  margin-left: 200px;
+}
+
+.secim {
+  margin-right: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+select {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #03bcf4;
+  border-radius: 3px;
+  color: black;
+  background-color: white;
+}
+
+.blue-btn6 {
+  margin-top: 3cm;
+  margin-left: 5.25cm;
+  position: relative;
+  padding: 15px 20px; /* Düğme boyutunu sabit tut */
+  font-size: 14px; /* Yazı boyutunu sabit tut */
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  transition: 0.5s;
+  color: #03bcf4;
+  border: 1.5px solid #03bcf4;
+  border-radius: 7px;
+  bottom: 150px;
+  right: 100px;
+}
+
+.blue-btn6::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1.5px solid #03e9f4; /* Kutucuğun kenarlarını düğmeyle aynı yap */
+  border-radius: 7px; /* Kutucuğun köşelerini düğmeyle aynı yap */
+
+  
+}
+
+.blue-btn6:hover::before {
+  border-color: #050801; /* Kutucuğun kenar rengini düğme hover rengiyle aynı yap */
+  
+}
+
+.blue-btn6:hover {
+  background-color: #03bcf4;
+  color: #050801;
+  box-shadow: 0px 0px 5px #03bcf4, 0px 0px 25px #03bcf4, 0px 0px 50px #03bcf4, 0px 0px 100px #03bcf4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.bilet-sayac {
+  position: absolute;
+  top: 250px;
+  left: 428px; /* Seçim kutularından sola 200px mesafe */
+  display: flex;
+  align-items: center;
+}
+
+.bilet-sayac button {
+  margin: 0 10px;
+  font-size: 1.2em;
+}
+
+.bilet-sayac span {
+  font-size: 1.2em;
+}
+
+.film-posteri {
+  width: 300px;
+  height: auto;
+  border-radius: 30px;
+  position: absolute;
+  left: 40px; /* Sol kenardan 20px mesafe */
+  top: 145px;
+}
+
+.bilet-sayac2 {
+  position: absolute;
+  top: 330px;
+  left: 395px; /* Seçim kutularından sola 200px mesafe */
+  display: flex;
+  align-items: center;
+}
+
+.bilet-sayac2 button {
+  margin: 0 10px;
+  font-size: 1.2em;
+}
+
+.bilet-sayac2 span {
+  font-size: 1.2em;
+}
+
+.film-adi {
+  margin-top: 500px;
+  align-items: center; 
+  font-size: 24px;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 10px rgba(3, 188, 244, 0.7),
+  0 0 20px rgba(3, 188, 244, 0.7), 0 0 40px rgba(3, 188, 244, 0.7);
+}
+
+.bilet-sayac .bilet-sayac-yazi,
+.bilet-sayac2 .bilet-sayac-yazi {
+  color: white; /* Yazı rengini beyaz yap */
+  font-size: 16px;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.nav-buttons6 {
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed; /* Sabit tut */
+    top: 0; /* Ekranın üstünden 20 piksel mesafede */
+    left: 0;
+    width: 100%; /* Ekranın genişliğinin tamamını kapla, kenar boşlukları dahil değil */
+    padding: 20px 0; /* Sol ve sağ boşluklar */
+    z-index: 1000; /* Diğer öğelerin üzerinde olması için z-index */
+    background-color: rgba(0, 0, 0, 0.7); /* Arka plan rengi: Siyah, %70 opaklık */
+}
+
+.nav-button {
+    color: #03bcf4; /* Neon mavi düğme metin rengi */
+    padding: 1vh 2vw; /* Düğme boyutu */
+    font-size: 2vh; /* Düğme metin boyutu */
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s; /* Metin rengi ve parlaklık için geçiş efekti */
+}
+
+.nav-button:hover {
+    color: #fff; /* Mouse üzerine gelindiğinde metin rengi değişecek */
+    text-shadow: 0 0 1vw #03bcf4, 0 0 2vw #03bcf4, 0 0 4vw #03bcf4, 0 0 8vw #03bcf4, 0 0 16vw #03bcf4; /* Parlaklık efekti */
+    border-bottom: 0.3vh solid #03bcf4; /* Mouse üzerine gelindiğinde alt çizgi rengi */
+}
+

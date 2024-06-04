@@ -1,0 +1,67 @@
+
+.payment-container55 {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Keeps the gradient background */
+    color: #fff; /* Keeps text color white for contrast */
+    padding: 20px; /* Keeps padding to ensure content doesn't touch the edges */
+    border-radius: 10px; /* Keeps rounded corners */
+    max-width: 600px; /* Adjusted width */
+    margin: 20px auto; /* Centers the container and adds vertical spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Keeps the shadow for depth */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center; /* Ensures all children (input groups) are centered horizontally */
+}
+
+.input-group55 {
+    margin-bottom: 20px;
+    width: 100%; /* Ensures input groups take full width of the container */
+}
+
+.label55, input, select, .button55 {
+    display: block;
+    width: 100%; /* Full width to match the parent's width */
+    padding: 10px;
+    margin-top: 5px;
+}
+
+input, select {
+    background: #222; /* Dark background for input fields */
+    border: 1px solid #555;
+    color: #fff; /* Light text for contrast */
+    border-radius: 5px;
+}
+
+.button55 {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button55:hover {
+    background-color: #0056b3;
+    text-decoration: white;
+}
+
+.button55 button{
+    background-color: #007bff00;
+}
+
+.button55 text{
+    font-size: 15px;
+    color: #fff;
+}
+
+.errors55 p {
+    color: #e57373;
+}
+
+.confirmation55 {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Darker background for the confirmation message */
+    color: #0f0;
+}

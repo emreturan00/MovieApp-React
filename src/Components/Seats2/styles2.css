@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.Movies {
+  margin-bottom: 24px;
+}
+
+.Movies select {
+  appearance: none;
+  background: white;
+  font-size: 14px;
+  margin-left: 12px;
+  border-radius: 4px;
+  padding: 6px 24px;
+}
+
+.ShowCase {
+  margin: 0 0 48px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background: #3b3b3b;
+  padding: 12px;
+  border-radius: 4px;
+  color: #7e7e7e;
+}
+
+.ShowCase li {
+  margin: 0 12px;
+}
+
+.Cinema {
+  margin-bottom: 18px;
+  perspective: 400px;
+
+  display: grid;
+  place-items: center;
+  grid-gap: 24px;
+}
+
+.Cinema .screen {
+  height: 70px;
+  background: white;
+  width: 100%;
+  transform: rotateX(-30deg) scale(1.1);
+  box-shadow: 0 3px 10px 2px;
+}
+
+.Cinema .seats {
+  display: grid;
+  grid-gap: 6px;
+  grid-template-columns: repeat(8, min-content);
+  align-items: center;
+}
+
+.Cinema .seats .seat:nth-of-type(8n + 2) {
+  margin-right: 80px;
+}
+
+.Cinema .seats .seat:nth-of-type(8n + 6) {
+  margin-right: 80px;
+}
+
+.Cinema .seats .seat:not(.occupied):hover,
+.Cinema .seats .seat:not(.occupied):focus {
+  cursor: pointer;
+  background: #c1eac5;
+  transform: scale(1.2);
+}
+
+.Cinema .seats .seat.selected::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background: transparent;
+  border: 1px solid #7bc47f;
+  animation: show-off 0.8s;
+  visibility: hidden;
+}
+
+@keyframes show-off {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.seat {
+  display: inline-block;
+  background: #626262;
+  width: 16px;
+  height: 12px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+
+  position: relative;
+  top: 1px;
+}
+
+.seat.selected {
+  background: #03bcf4 !important;
+}
+
+.seat.occupied {
+  background: #cfcfcf;
+}
+
+.info .count {
+  color: #03bcf4;
+}
+
+.info .total {
+  color: #7bc47f;
+}
+.seat {
+  width: 40px; /* Adjust as needed */
+  height: 40px; /* Adjust as needed */
+  /* Other styles */
+}
+/* Add this CSS rule to change the background color of the selected seat */
+.seat.selected-row-1 {
+  background-color: green; /* Change this color to the desired color */
+}
+
+/* Add any additional styles here */
+.nav-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed; /* Keep fixed at the top */
+  top: 0; /* 0 pixels from the top of the viewport */
+  left: 0;
+  width: 100%; /* Cover the full width of the viewport, including margins */
+  padding: 20px 0; /* Top and bottom padding */
+  z-index: 1000; /* Ensure it stays above other elements */
+  background-color: rgba(0, 0, 0, 0.7); /* Background color: Black with 70% opacity */
+}
+
+.nav-button {
+  color: #03bcf4; /* Neon blue text color for the buttons */
+  padding: 1vh 2vw; /* Button size */
+  font-size: 2vh; /* Text size of the button */
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s, text-shadow 0.3s; /* Transition effect for color and text-shadow */
+}
+
+.nav-button:hover {
+  color: #fff; /* Text color changes to white on hover */
+  text-shadow: 0 0 1vw #03bcf4, 0 0 2vw #03bcf4, 0 0 4vw #03bcf4, 0 0 8vw #03bcf4, 0 0 16vw #03bcf4; /* Glow effect */
+  border-bottom: 0.3vh solid #03bcf4; /* Underline effect on hover */
+}
