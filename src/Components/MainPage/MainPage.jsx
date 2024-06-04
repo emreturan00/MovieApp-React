@@ -8,6 +8,35 @@ import img3 from '../Assets/img3.jpg';
 import img4 from '../Assets/img4.jpg';
 
 function MainPage() {
+    const [cards, setCards] = useState([]);
+
+    useEffect(() => {
+        // Fetch data from the API
+        fetch('http://localhost:8080/api/movies')
+            .then(response => response.json())
+            .then(data => {
+                // Map the fetched data to the format needed for sliderItems and thumbnailItems
+                const sliderItems = data.map((item, index) => ({
+                    id: index + 1,
+                    image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
+                    author: item.director, // Assuming the fetched data has an 'author' property
+                    title: item.name, // Assuming the fetched data has a 'title' property
+                    topic: 'MOVIE',
+                    description: item.cast // Assuming the fetched data has a 'description' property
+                }));
+    
+                const thumbnailItems = data.map((item, index) => ({
+                    id: index + 1,
+                    image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
+                    title: item.name, // Assuming the fetched data has a 'title' property
+                    description: item.cast // Assuming the fetched data has a 'description' property
+                }));
+    
+                // Set the state variables
+                setSliderItems(sliderItems);
+                setThumbnailItems(thumbnailItems);
+            });
+    }, []);
 
 
     
@@ -17,12 +46,7 @@ function MainPage() {
     const [locationMenuOpen, setLocationMenuOpen] = useState(false);
     const [genreMenuOpen, setGenreMenuOpen] = useState(false);
     
-    const cards = [
-        { title: 'Movie 1', copy: 'description of Movie 1', button: 'Book Now' },
-        { title: 'Movie 2', copy: 'description of Movie 2', button: 'Book Now' },
-        { title: 'Movie 3', copy: 'description of Movie 3', button: 'Book Now' },
-        { title: 'Movie 4', copy: 'description of Movie 4', button: 'Book Now' }
-    ];
+  
 
     const Card = ({ title, copy, button }) => (
         <div className="card-currently">
@@ -34,24 +58,6 @@ function MainPage() {
         </div>
     );
     
-
-    // useEffect and other will be added
-    useEffect(() => {
-        // Slider ve thumbnail 
-        
-        setSliderItems([
-            { id: 1, image: img1, author: 'ROMANCE', title: 'TITANIC', topic: 'MOVIE', description: 'MOVIE 1' },
-            { id: 2, image: img2, author: 'FANTASY', title: 'DESIGN SLIDER', topic: 'MOVIE', description: 'MOVIE 2' },
-            { id: 3, image: img3, author: 'SCI-FI', title: 'DESIGN SLIDER', topic: 'MOVIE', description: 'MOVIE 3' },
-            { id: 4, image: img4, author: 'ADVENTURE', title: 'DESIGN SLIDER', topic: 'MOVIE', description: 'MOVIE 4' }
-        ]);
-        setThumbnailItems([
-            { id: 1, image: img1, title: 'Name Slider', description: 'Description' },
-            { id: 2, image: img2, title: 'Name Slider', description: 'Description' },
-            { id: 3, image: img3, title: 'Name Slider', description: 'Description' },
-            { id: 4, image: img4, title: 'Name Slider', description: 'Description' }
-        ]);
-    }, []); 
 
     
     const showNextSlider = () => {

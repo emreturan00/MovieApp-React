@@ -23,6 +23,8 @@ import MyProfile from './Components/MyProfile/MyProfile';
 import Seats2 from './Components/Seats2/Seats2';
 import Payment from './Components/Payment/Payment';
 import SaloonOperation from './Components/SaloonOperation/SaloonOperation';
+import FilmForm from './Components/FilmForm/FilmForm';
+import Admin from './Components/Admin/Admin';
 
 
 
@@ -51,6 +53,9 @@ function App() {
           <Route path="/page2" element={<Page2/>} />
           <Route path="/payment" element={<Payment/>} />
           <Route path="/saloon-operation" element={<SaloonOperation/>} />
+          <Route path="/FilmForm" element={<FilmForm/>} />
+          <Route path="/Admin" element={<Admin/>} />
+          
 
         </Routes>
       </div>
