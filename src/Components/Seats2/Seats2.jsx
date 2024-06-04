@@ -3,34 +3,55 @@ import { Link } from 'react-router-dom';
 import './Seats2.css';
 import './styles2.css';
 
-const Seats = () => {
+const Seats = ({ ogrenciBiletSayisi, tamBiletSayisi }) => {
   const [secilen_koltuklar, setsecilen_koltuklar] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSeatClick = (seatIndex) => {
-    setsecilen_koltuklar(prevsecilen_koltuklar => {
-      if (prevsecilen_koltuklar.includes(seatIndex)) {
-        return prevsecilen_koltuklar.filter(seat => seat !== seatIndex);
-      } else {
+  setsecilen_koltuklar(prevsecilen_koltuklar => {
+    if (prevsecilen_koltuklar.includes(seatIndex)) {
+      return prevsecilen_koltuklar.filter(seat => seat !== seatIndex);
+    } else {
+      if (prevsecilen_koltuklar.length < ogrenciBiletSayisi + tamBiletSayisi) {
         return [...prevsecilen_koltuklar, seatIndex];
+      } else {
+        setErrorMessage('Cannot select more seats');
+        setTimeout(() => setErrorMessage(null), 2000);
+        return prevsecilen_koltuklar;
       }
-    });
-  };
+    }
+  });
+};
 
-  const handleRowClick = (rowIndex) => {
-    setsecilen_koltuklar(prevsecilen_koltuklar => {
-      const rowSeats = Array.from({ length: 8 }, (_, i) => i + rowIndex * 8);  // Calculates the seats for the entire row
-      const newsecilen_koltuklar = prevsecilen_koltuklar.some(seat => rowSeats.includes(seat))
-        ? prevsecilen_koltuklar.filter(seat => !rowSeats.includes(seat))  // Deselects the row if any seat is already selected
-        : [...prevsecilen_koltuklar, ...rowSeats];  // Selects all seats in the row if none are selected
-      return newsecilen_koltuklar.sort((a, b) => a - b);  // Sorts the array to maintain order
-    });
-  };
+const handleRowClick = (rowIndex) => {
+  setsecilen_koltuklar(prevsecilen_koltuklar => {
+    const rowSeats = Array.from({ length: 8 }, (_, i) => i + rowIndex * 8);
+    const newsecilen_koltuklar = prevsecilen_koltuklar.some(seat => rowSeats.includes(seat))
+      ? prevsecilen_koltuklar.filter(seat => !rowSeats.includes(seat))
+      : [...prevsecilen_koltuklar, ...rowSeats];
+
+    if (newsecilen_koltuklar.length > ogrenciBiletSayisi + tamBiletSayisi) {
+      setErrorMessage('Cannot select more seats');
+      setTimeout(() => setErrorMessage(null), 2000);
+      return prevsecilen_koltuklar;
+    } else {
+      return newsecilen_koltuklar.sort((a, b) => a - b);
+    }
+  });
+};
   const handleSubmit = async () => {
+    if (secilen_koltuklar.length !== ogrenciBiletSayisi + tamBiletSayisi) {
+      setErrorMessage('Selected seats do not match the total of the props');
+      setTimeout(() => setErrorMessage(null), 2000);
+      return;
+    }
+    
     const biletAlData = {
 
       // secilen_koltuklar
       // secilenKoltukSayisi: secilen_koltuklar.length,
       secilenKoltuklar: secilen_koltuklar.join(', ')
+
       
     };
 
@@ -61,6 +82,22 @@ const Seats = () => {
 
   return (
     <div className="App">
+      {errorMessage && 
+      <div style={{ 
+        color: 'red', 
+        position: 'fixed', 
+        top: '50%', 
+        left: '50%', 
+        transform: 'translate(-50%, -50%)',
+        backgroundColor: 'white',
+        padding: '10px',
+        borderRadius: '5px',
+        zIndex: 1000
+      }}>
+        {errorMessage}
+      </div>
+    }
+
       <div className="nav-buttons">
                 <Link to="/2" className="nav-button">HOME</Link>
                 <Link to="/about-us2" className="nav-button">ABOUT US</Link>

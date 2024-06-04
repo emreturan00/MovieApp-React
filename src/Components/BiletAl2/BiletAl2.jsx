@@ -3,12 +3,11 @@ import './BiletAl2.css';
 import titanic from '../Assets/titanic.png';
 import { Link, useNavigate } from 'react-router-dom';
 
-const BiletAlSayfasi = () => {
+const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSayisi, setTamBiletSayisi }) => {
   const [secilenSinema, setSecilenSinema] = useState('');
   const [secilenTarih, setSecilenTarih] = useState('');
   const [secilenSeans, setSecilenSeans] = useState('');
-  const [ogrenciBiletSayisi, setOgrenciBiletSayisi] = useState(0);
-  const [tamBiletSayisi, setTamBiletSayisi] = useState(0);
+
 
   const navigate = useNavigate(); // useNavigate hook'unu kullanarak navigate işlevini oluşturun
 
@@ -43,11 +42,14 @@ const BiletAlSayfasi = () => {
 
   const handleTamArtir = () => {
     setTamBiletSayisi(prevSayi => prevSayi + 1);
+    console.log(tamBiletSayisi + ogrenciBiletSayisi);
+
   };
 
   const handleTamAzalt = () => {
     if (tamBiletSayisi > 0) {
       setTamBiletSayisi(prevSayi => prevSayi - 1);
+
     }
   };
 
@@ -73,7 +75,6 @@ const BiletAlSayfasi = () => {
         const responseData = await response.json();
         console.log('MySQL response:', responseData);
         alert('Ticket successfully saved!');
-        handleReset();
         navigate('/seats2'); // Veri kaydetme işlemi başarılı olduğunda kullanıcıyı yönlendirin
       } else {
         const errorData = await response.json();

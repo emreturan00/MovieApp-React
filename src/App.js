@@ -2,7 +2,8 @@
 
 
 
-import React from 'react';
+
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import MainPage from './Components/MainPage/MainPage';
@@ -26,10 +27,15 @@ import SaloonOperation from './Components/SaloonOperation/SaloonOperation';
 
 
 function App() {
+  const [ogrenciBiletSayisi, setOgrenciBiletSayisi] = useState(0);
+  const [tamBiletSayisi, setTamBiletSayisi] = useState(0);
+  
   return (
     <Router>
       <div className="App">
         <Routes>
+          <Route path="/buy-ticket2" element={<BuyTicket2 ogrenciBiletSayisi={ogrenciBiletSayisi} setOgrenciBiletSayisi={setOgrenciBiletSayisi} tamBiletSayisi={tamBiletSayisi} setTamBiletSayisi={setTamBiletSayisi} />} />
+          <Route path="/seats2" element={<Seats2 ogrenciBiletSayisi={ogrenciBiletSayisi} setOgrenciBiletSayisi={setOgrenciBiletSayisi} tamBiletSayisi={tamBiletSayisi} setTamBiletSayisi={setTamBiletSayisi} />} />
           <Route exact path="/" element={<MainPage />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/our-team" element={<OurTeam />} />
@@ -43,8 +49,6 @@ function App() {
           <Route path="/about-us2" element={<AboutUs2 />} />
           <Route path="/our-team2" element={<OurTeam2 />} />
           <Route path="/page2" element={<Page2/>} />
-          <Route path="/buy-ticket2" element={<BuyTicket2 />} />
-          <Route path="/seats2" element={<Seats2/>} />
           <Route path="/payment" element={<Payment/>} />
           <Route path="/saloon-operation" element={<SaloonOperation/>} />
 
