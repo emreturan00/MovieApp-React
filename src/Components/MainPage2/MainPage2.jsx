@@ -37,6 +37,8 @@ function MainPage() {
                 // Set the state variables
                 setSliderItems(sliderItems);
                 setThumbnailItems(thumbnailItems);
+
+                setCards(data)
             });
     }, []);
 
