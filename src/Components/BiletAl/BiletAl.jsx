@@ -74,7 +74,7 @@ const BiletAlSayfasi = () => {
         console.log('MySQL response:', responseData);
         alert('Ticket successfully saved!');
         handleReset();
-        navigate('/seats'); // Veri kaydetme işlemi başarılı olduğunda kullanıcıyı yönlendirin
+        navigate('/seats2'); // Veri kaydetme işlemi başarılı olduğunda kullanıcıyı yönlendirin
       } else {
         const errorData = await response.json();
         console.error('Error saving ticket:', errorData);
