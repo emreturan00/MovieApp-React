@@ -7,8 +7,7 @@
     --ciSecond: #0c1016;
 }
 
-.Admin,
-html {
+.Admin{
     width: 100%;
     min-height: 100%;
     display: flex;
@@ -24,7 +23,7 @@ html {
     overflow-x: hidden;
 }
 
-* {
+.Admin * {
     box-sizing: border-box;
 }
 

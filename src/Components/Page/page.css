@@ -184,11 +184,11 @@
     border-bottom: 0.3vh solid #03bcf4;
 }
 
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 .site-footer5 {
     margin-top: 50;

@@ -18,14 +18,14 @@
     width: 100%; /* Ensures input groups take full width of the container */
 }
 
-.label55, input, select, .button55 {
+.label55, .input1, .select1, .button55 {
     display: block;
     width: 100%; /* Full width to match the parent's width */
     padding: 10px;
     margin-top: 5px;
 }
 
-input, select {
+.input, .select {
     background: #222; /* Dark background for input fields */
     border: 1px solid #555;
     color: #fff; /* Light text for contrast */

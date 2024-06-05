@@ -75,7 +75,7 @@ const Login = () => {
                 {error && <p className="error">{error}</p>}
                 <div className="forgot-password0">Lost Password?<span> Click Here!</span></div>
                 <div className="submit-container0">
-                    <div className="submit gray0" onClick={handleSignup}>Sign Up</div>
+                    <div className="submit0" onClick={handleSignup}>Sign Up</div>
                     <button type="submit" className="submit0">Login</button>
                 </div>
             </form>

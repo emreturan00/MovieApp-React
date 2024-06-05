@@ -1,5 +1,5 @@
 /* FilmForm.css */
-body {
+.body {
   background:linear-gradient(#00515f,#000000);
   color: #fff; /* Yazıları beyaz yap */
   height: 90vh; /* Sayfanın tamamını kaplamak için ekran yüksekliği kadar uzatır */

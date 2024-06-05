@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+
 import './Seats2.css';
 import './styles2.css';
 
@@ -40,11 +41,13 @@ const handleRowClick = (rowIndex) => {
   });
 };
   const handleSubmit = async () => {
+
     if (secilen_koltuklar.length !== ogrenciBiletSayisi + tamBiletSayisi) {
       setErrorMessage('Selected seats do not match the total of the props');
       setTimeout(() => setErrorMessage(null), 2000);
       return;
     }
+
     
     const biletAlData = {
 
@@ -105,11 +108,11 @@ const handleRowClick = (rowIndex) => {
                 <Link to="/my-profile" className="nav-button">MY PROFILE</Link>
       </div>
       <div className="seat-area">
-        <div className="Movies">
+      {/*  <div className="Movies">
           <select>
-            {/* Options here */}
+            { Options here }
           </select>
-        </div>
+        </div> */}
         <ul className="ShowCase">
           <li>{secilen_koltuklar.length > 0 ? secilen_koltuklar.join(', ') : 'N/A'}</li>
           <li>Selected</li>

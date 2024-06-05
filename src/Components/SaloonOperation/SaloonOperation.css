@@ -16,7 +16,7 @@
   background:linear-gradient(#00515f,#000000);
 }
 
-code {
+.code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }

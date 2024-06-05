@@ -53,7 +53,7 @@ function MainPage() {
           <div className="content-currently">
             <h2 className="title-currently">{title}</h2>
             <p className="copy-currently">{copy}</p>
-            <Link to="/buy-ticket" className="btn-currently2">{button}</Link>
+            <Link to="/buy-ticket2" className="btn-currently2">{button}</Link>
           </div>
         </div>
     );
@@ -137,7 +137,7 @@ function MainPage() {
                                 <div className="topic">{item.topic}</div>
                                 <div className="des">{item.description}</div>
                                 <div className="buttons">     
-                                    <Link to="/buy-ticket">
+                                    <Link to="/buy-ticket2">
                                     <button>BUY TICKET</button>
                                     </Link>
                                     <Link to="/page">

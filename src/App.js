@@ -1,7 +1,3 @@
-// deneme push
-
-
-
 
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -37,7 +33,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/buy-ticket2" element={<BuyTicket2 ogrenciBiletSayisi={ogrenciBiletSayisi} setOgrenciBiletSayisi={setOgrenciBiletSayisi} tamBiletSayisi={tamBiletSayisi} setTamBiletSayisi={setTamBiletSayisi} />} />
-          <Route path="/seats2" element={<Seats2 ogrenciBiletSayisi={ogrenciBiletSayisi} setOgrenciBiletSayisi={setOgrenciBiletSayisi} tamBiletSayisi={tamBiletSayisi} setTamBiletSayisi={setTamBiletSayisi} />} />
+          <Route path="/seats2" element={<Seats2 ogrenciBiletSayisi={ogrenciBiletSayisi} tamBiletSayisi={tamBiletSayisi} />} />
           <Route exact path="/" element={<MainPage />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/our-team" element={<OurTeam />} />

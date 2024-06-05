@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Signup.css';
+import './Login.css';
 
 import user_icon from '../Assets/user.png';
 import email_icon from '../Assets/mail.png';
@@ -91,26 +91,26 @@ const Signup = () => {
     };
 
     return (
-        <div className='container1'>
+        <div className='container0'>
             {showTick && <FaCheckCircle style={{ color: 'green', position: 'absolute', top: '70%', left: '48%', zIndex: 1000, fontSize: '50px' }} />}
             {showCross && <FaTimesCircle style={{ color: 'red', position: 'absolute', top: '70%', left: '48%', zIndex: 1000, fontSize: '50px' }} />}
             <Link to="/">
-            <button className="back-button1">&lt;</button>
+            <button className="back-button0">&lt;</button>
             </Link>
-            <div className="header1">
-                <div className="text1">Sign Up</div>
+            <div className="header0">
+                <div className="text0">Sign Up</div>
             </div>
-            <div className="inputs1">
-                <div className="input1">
+            <div className="inputs0">
+                <div className="input0">
                     <img src={user_icon} alt="User" />
                     <input
-                        type="text"
+                        type="name"
                         placeholder='Name'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>
-                <div className="input1">
+                <div className="input0">
                     <img src={email_icon} alt="Email" />
                     <input
                         type="email"
@@ -121,7 +121,7 @@ const Signup = () => {
                     {emailError && <p style={{ color: 'red', fontSize:'12px' }}>{emailError}</p>}
 
                 </div>
-                <div className="input1">
+                <div className="input0">
                     <img src={password_icon} alt="Password" />
                     <input
                         type="password"
@@ -132,12 +132,13 @@ const Signup = () => {
                     {passwordError && <p style={{ color: 'red', fontSize:'12px' }}>{passwordError}</p>}
                 </div>
             </div>
-            <div className="submit-container">
+            <div className="submit-container0">
                 <Link to="/login">
-                <div className="submit" onClick={handleSignup}>Sign Up</div>
+                <button type="submit0" className="submit0" onClick={handleSignup}>Sign up</button>
                 </Link>
                 <Link to="/login">
-                <div className="submit gray" onClick={handleLoginRedirect}>Login</div>
+                <button type="submit0" className="submit0" onClick={handleLoginRedirect}>Login</button>
+
                 </Link>
             </div>
         </div>

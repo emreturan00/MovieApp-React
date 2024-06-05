@@ -1,4 +1,4 @@
-body {
+.body {
   display: grid;
   place-items: center;
 
@@ -40,11 +40,11 @@ body {
   margin-right: 20px;
 }
 
-label {
+.secimler label {
   font-weight: bold;
 }
 
-select {
+.secimler select {
   width: 200px;
   padding: 5px;
   border: 1px solid #03bcf4;
@@ -69,6 +69,7 @@ select {
   bottom: 150px;
   right: 100px;
 }
+
 
 .blue-btn6::before {
   content: '';
@@ -96,7 +97,7 @@ select {
 }
 
 
-button:disabled {
+.bilet-sayac button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
@@ -194,4 +195,5 @@ button:disabled {
     text-shadow: 0 0 1vw #03bcf4, 0 0 2vw #03bcf4, 0 0 4vw #03bcf4, 0 0 8vw #03bcf4, 0 0 16vw #03bcf4; /* Parlaklık efekti */
     border-bottom: 0.3vh solid #03bcf4; /* Mouse üzerine gelindiğinde alt çizgi rengi */
 }
+
 

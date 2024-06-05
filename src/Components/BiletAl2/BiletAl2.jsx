@@ -147,10 +147,10 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
         </div>
       </div>
       <img src={titanic} alt="Titanic" className="film-posteri" />
-      <div className="film-adi">TITANIC</div>
+      <div className="film-adi"></div>
 
       <button
-        className="blue-btn"
+        className="blue-btn6"
         disabled={!secilenSinema || !secilenTarih || !secilenSeans || (ogrenciBiletSayisi === 0 && tamBiletSayisi === 0)}
         onClick={handleSubmit}> Seat Selection
       </button>
