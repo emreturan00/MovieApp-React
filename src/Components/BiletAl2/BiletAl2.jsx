@@ -5,10 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 
-const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSayisi, setTamBiletSayisi}) => {
-  const location = useLocation()
-  const { movieId } = location.state
 
+
+const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSayisi, setTamBiletSayisi}) => {
+
+// Inside your component
+  const location = useLocation();
+  const movie = location.state ? location.state.movie : null;
+  console.log(movie);
 
   
   const [secilenSinema, setSecilenSinema] = useState('');
@@ -49,7 +53,6 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
 
   const handleTamArtir = () => {
     setTamBiletSayisi(prevSayi => prevSayi + 1);
-    console.log("gelen id: " + {movieId});
 
 
   };
@@ -63,6 +66,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
 
   const handleSubmit = async () => {
     const biletAlData = {
+      secilenFilm: movie.ID,
       secilenSinema,
       secilenTarih,
       secilenSeans,
@@ -155,8 +159,8 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
           <button onClick={handleTamArtir}>+</button>
         </div>
       </div>
-      <img src={titanic} alt="Titanic" className="film-posteri" />
-      <div className="film-adi"></div>
+      <img src={movie.image} alt="movie.name" className="film-posteri" />
+      <div className="film-adi"> </div>
 
       <button
         className="blue-btn6"

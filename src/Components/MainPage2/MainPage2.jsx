@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import './MainPage2.css'; 
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import img1 from '../Assets/img5.png';
 import img2 from '../Assets/img2.jpg';
@@ -11,6 +12,7 @@ import img4 from '../Assets/img4.jpg';
 
 function MainPage() {
     const [cards, setCards] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch data from the API
@@ -143,18 +145,16 @@ function MainPage() {
                                 <div className="topic">{item.topic}</div>
                                 <div className="des">{item.description}</div>
                                 <div className="buttons">     
-                                    <Link to={{
-                                        pathname: "/buy-ticket2",
-                                        state: { movieId: 26 }
-                                    }}>
-                                    <button>BUY TICKET</button>
-                                    </Link>
-                                    <Link to={{
-                                        pathname: "/page",
-                                        state: { movieId: item.ID }
-                                    }}>
-                                    <button>LOOK DETAILS </button>
-                                    </Link>
+                                    <button 
+                                        className="btn" 
+                                        onClick={() => navigate('/buy-ticket2', { state: { movie: item } })}> 
+                                        BUY TICKET
+                                    </button>
+                                    <button 
+                                        className="btn" 
+                                        onClick={() => navigate('/page', { state: { movie: item } })}> 
+                                        LOOK DETAILS
+                                    </button>
                                 </div>
                             </div>
                         </div>
