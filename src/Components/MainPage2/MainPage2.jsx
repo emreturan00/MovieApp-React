@@ -20,6 +20,7 @@ function MainPage() {
                 // Map the fetched data to the format needed for sliderItems and thumbnailItems
                 const sliderItems = data.map((item, index) => ({
                     id: index + 1,
+                    ID: item.id,
                     image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
                     author: item.director, // Assuming the fetched data has an 'author' property
                     title: item.name, // Assuming the fetched data has a 'title' property
@@ -29,6 +30,7 @@ function MainPage() {
     
                 const thumbnailItems = data.map((item, index) => ({
                     id: index + 1,
+                    ID: item.id,
                     image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
                     title: item.name, // Assuming the fetched data has a 'title' property
                     description: item.cast // Assuming the fetched data has a 'description' property
@@ -141,10 +143,16 @@ function MainPage() {
                                 <div className="topic">{item.topic}</div>
                                 <div className="des">{item.description}</div>
                                 <div className="buttons">     
-                                    <Link to="/buy-ticket2">
+                                    <Link to={{
+                                        pathname: "/buy-ticket2",
+                                        state: { movieId: 26 }
+                                    }}>
                                     <button>BUY TICKET</button>
                                     </Link>
-                                    <Link to="/page">
+                                    <Link to={{
+                                        pathname: "/page",
+                                        state: { movieId: item.ID }
+                                    }}>
                                     <button>LOOK DETAILS </button>
                                     </Link>
                                 </div>

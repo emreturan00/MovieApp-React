@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import './BiletAl2.css';
 import titanic from '../Assets/titanic.png';
 import { Link, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSayisi, setTamBiletSayisi }) => {
+
+const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSayisi, setTamBiletSayisi}) => {
+  const location = useLocation()
+  const { movieId } = location.state
+
+
+  
   const [secilenSinema, setSecilenSinema] = useState('');
   const [secilenTarih, setSecilenTarih] = useState('');
   const [secilenSeans, setSecilenSeans] = useState('');
@@ -42,7 +49,8 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
 
   const handleTamArtir = () => {
     setTamBiletSayisi(prevSayi => prevSayi + 1);
-    console.log(tamBiletSayisi + ogrenciBiletSayisi);
+    console.log("gelen id: " + {movieId});
+
 
   };
 
@@ -61,6 +69,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
       ogrenciBiletSayisi,
       tamBiletSayisi
     };
+
 
     try {
       const response = await fetch('http://localhost:8080/api/biletal', {
