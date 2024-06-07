@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
 import './Payment.css'; // Ensure the CSS is correctly imported
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+async function postPaymentData(paymentData) {
+    const response = await fetch('http://localhost:8080/api/payment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paymentData)
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+}
 
 function Payment() {
     const [paymentData, setPaymentData] = useState({
@@ -26,10 +42,17 @@ function Payment() {
         return Object.keys(tempErrors).length === 0;
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (validateForm()) {
-            setIsSubmitted(true); // Simulating a successful submission
+            try {
+                console.log('Submitting payment data:', paymentData);
+                const response = await postPaymentData(paymentData);
+                console.log('API Response:', response);
+                setIsSubmitted(true); // Simulating a successful submission
+            } catch (error) {
+                console.error("There was an error submitting the payment!", error);
+            }
         }
     };
 
