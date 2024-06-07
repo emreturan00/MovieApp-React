@@ -1,38 +1,64 @@
-import React, { useState } from 'react';
 import './BiletAl2.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-
-
-
+import React, { useState, useEffect } from 'react';
 
 const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSayisi, setTamBiletSayisi}) => {
 
-// Inside your component
+  const [sinemalar, setSinemalar] = useState([]);
+  const [selectedCinemaPrice, setSelectedCinemaPrice] = useState(null);
+
+  const tarihler = ['2024-04-24', '2024-04-25', '2024-04-26'];
+  const seanslar = ['10:00', '13:00', '16:00'];
+  
+
+  useEffect(() => {
+
+    
+    fetch('http://localhost:8080/api/cinemas')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error fetching cinemas');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const cinemas = data.map((item, index) => ({
+          id: parseInt(index) + 1, // Convert index to integer
+          ID: item.id,
+          name: item.name,
+          price: item.price
+        }));
+
+        setSinemalar(cinemas);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, []);
+
   const location = useLocation();
   const movie = location.state ? location.state.movie : null;
-  console.log(movie);
 
-  
   const [secilenSinema, setSecilenSinema] = useState('');
   const [secilenTarih, setSecilenTarih] = useState('');
   const [secilenSeans, setSecilenSeans] = useState('');
 
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // useNavigate hook'unu kullanarak navigate işlevini oluşturun
-
-  const sinemalar = ['Cinema 1', 'Cinema 2', 'Cinema 3'];
-  const tarihler = ['2024-04-24', '2024-04-25', '2024-04-26'];
-  const seanslar = ['10:00', '13:00', '16:00'];
-
-  const handleSinemaSecim = (sinema) => {
-    setSecilenSinema(sinema);
+  const handleSinemaSecim = (sinemaId) => {
+    console.log("Selected Cinema ID:", sinemaId);
+    const selectedCinema = sinemalar.find(sinema => sinema.id === parseInt(sinemaId)); // Convert sinemaId to integer
+    setSecilenSinema(sinemaId);
     setSecilenTarih('');
     setSecilenSeans('');
+    setSelectedCinemaPrice(selectedCinema ? selectedCinema.price : null);
+    console.log('Selected Cinema Price:', selectedCinema ? selectedCinema.price : null);
   };
+  
 
   const handleTarihSecim = (tarih) => {
-    setSecilenTarih(tarih);
+    setSecilenTarih(tarih);    
     setSecilenSeans('');
   };
 
@@ -52,14 +78,11 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
 
   const handleTamArtir = () => {
     setTamBiletSayisi(prevSayi => prevSayi + 1);
-
-
   };
 
   const handleTamAzalt = () => {
     if (tamBiletSayisi > 0) {
       setTamBiletSayisi(prevSayi => prevSayi - 1);
-
     }
   };
 
@@ -72,7 +95,6 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
       ogrenciBiletSayisi,
       tamBiletSayisi
     };
-
 
     try {
       const response = await fetch('http://localhost:8080/api/biletal', {
@@ -87,7 +109,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
         const responseData = await response.json();
         console.log('MySQL response:', responseData);
         alert('Ticket successfully saved!');
-        navigate('/seats2'); // Veri kaydetme işlemi başarılı olduğunda kullanıcıyı yönlendirin
+        navigate('/seats2');
       } else {
         const errorData = await response.json();
         console.error('Error saving ticket:', errorData);
@@ -109,6 +131,11 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
 
   return (
     <div className="bilet-al-container">
+      {selectedCinemaPrice && (
+        <div className="price-display">
+          Price: {selectedCinemaPrice}
+        </div>
+      )}
       <div className="nav-buttons">
         <Link to="/2" className="nav-button">HOME</Link>
         <Link to="/about-us2" className="nav-button">ABOUT US</Link>
@@ -122,7 +149,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
           <select value={secilenSinema} onChange={(e) => handleSinemaSecim(e.target.value)}>
             <option value="">Please choose a cinema</option>
             {sinemalar.map((sinema, index) => (
-              <option key={index} value={sinema}>{sinema}</option>
+              <option key={sinema.id} value={sinema.id}>{sinema.name}</option>
             ))}
           </select>
         </div>
@@ -158,7 +185,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
           <button onClick={handleTamArtir}>+</button>
         </div>
       </div>
-      <img src={movie.image} alt="movie.name" className="film-posteri" />
+      <img src={movie.image} alt={movie.name} className="film-posteri" />
       <div className="film-adi"> </div>
 
       <button
