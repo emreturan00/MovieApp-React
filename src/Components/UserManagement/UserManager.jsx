@@ -20,7 +20,7 @@ const UserManager = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8080/api/users/update`, {
+      const response = await fetch(`http://localhost:8080/api/users/${userData.username}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -38,10 +38,10 @@ const UserManager = () => {
       console.error('Error:', error);
     }
   };
-
   const handleDeleteUser = async () => {
+    console.log('Deleting user:', userData.username);
     try {
-      const response = await fetch(`http://localhost:8080/api/users/delete/${userData.email}`, {
+      const response = await fetch(`http://localhost:8080/api/users/${userData.username}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

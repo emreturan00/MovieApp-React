@@ -71,10 +71,10 @@
   }
   
   .input[type="text"],
-  .input[type="email"],
-  .input[type="password"] {
-    width: 100%;
-    padding: 10px;
+.input[type="email"],
+.input[type="password"] {
+    width: calc(100% - 20px); /* Adjust width to match the username input box */
+    padding: 10px; /* Match padding */
     margin-top: 5px;
     border: 1px solid #03bcf4;
     border-radius: 4px;
@@ -84,7 +84,9 @@
     position: relative;
     pointer-events: auto;
     opacity: 1;
-  }
+}
+
+  
   
   .button-group22 {
     display: flex;
