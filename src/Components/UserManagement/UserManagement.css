@@ -22,6 +22,8 @@ body {
 .user-management-management {
     color: white;
     text-align: center;
+    font-size: 3rem; /* Reduced font size for USER MANAGEMENT text */
+    margin-top: 20px; /* Moves the text up */
 }
 
 .nav-button-management {
@@ -39,59 +41,69 @@ body {
     border-bottom: 0.3vh solid #03bcf4;
 }
 
-/* Section styles for Add Account, Accounts, and Users */
-.section-accounts-management {
-    background-color: black; /* Black background for all sections */
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.section-users-management {
-    background-color: black; /* Black background for all sections */
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.section-accounts-management h2, .section-users-management h2 {
-    color: #03bcf4; /* Cyan color for section headers */
-}
-
-.button-management {
-    background-color: #03bcf4;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease-in-out;
-}
-
-.button-management:hover {
-    box-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 30px #03bcf4; /* Glowing effect */
-}
-
-.gradient-background-management {
-    background: linear-gradient(to bottom, #000000, #03bcf456); /* Adjust the colors as needed */
-}
-
-.App-management {
-    background: black; /* Full viewport black background */
-    height: 100vh; /* Make sure the gradient covers the full height of the viewport */
-    width: 100%; /* Cover the full width */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Flexbox layout for main-section */
 .main-section-management {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Center align the section */
     width: 100%;
     padding: 20px;
+}
+
+.movie-form-container {
+    width: 600px; /* Increase the width */
+    padding: 40px; /* Increase padding */
+    border: 1px solid #03bcf4; /* Border color */
+    border-radius: 5px;
+    box-shadow: 0 0 20px #03bcf4, 0 0 40px #03bcf4, 0 0 60px #03bcf4; /* Increase shadow for glowing effect */
+    text-align: center; /* Center align text */
+    background-color: black; /* Background color */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Align text to the left */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #03bcf4; /* Label color */
+    font-size: 1.2rem; /* Label font size */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #03bcf4;
+    border-radius: 4px;
+    background-color: #111;
+    color: white;
+    z-index: 1;
+    position: relative;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.button-group22 {
+    display: flex;
+    justify-content: center; /* Center align buttons */
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+.blue-btn22, .red-btn22 {
+    padding: 10px 20px;
+    border: 1px solid #03bcf4;
+    border-radius: 5px;
+    background: none;
+    color: #03bcf4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.blue-btn22:hover, .red-btn22:hover {
+    background-color: #03bcf4;
+    color: white;
 }
