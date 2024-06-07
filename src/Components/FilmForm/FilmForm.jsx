@@ -18,13 +18,13 @@ async function postMovieData(formData) {
   return response.json();
 }
 
-async function putMovieData(formData) {
-  const response = await fetch(`http://localhost:8080/api/movies/${formData.name}`, {
+async function putMovieData(name, partialUpdateData) {
+  const response = await fetch(`http://localhost:8080/api/movies/${name}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(formData)
+    body: JSON.stringify(partialUpdateData)
   });
 
   if (!response.ok) {
@@ -57,7 +57,19 @@ const FilmForm = () => {
     cast: '',
     genre: '',
     releaseDate: '',
-    imageLocation: '' 
+    imageLocation: '',
+    rating: ''
+  });
+
+  const [initialFormData, setInitialFormData] = useState({
+    name: '',
+    duration: '',
+    director: '',
+    cast: '',
+    genre: '',
+    releaseDate: '',
+    imageLocation: '',
+    rating: ''
   });
 
   const handleInputChange = (event) => {
@@ -94,14 +106,17 @@ const FilmForm = () => {
       return;
     }
 
-    const isAtLeastOneFieldFilled = Object.entries(formData).some(
-      ([key, value]) => key !== 'name' && value.trim() !== ''
-    );
+    const partialUpdateData = {};
+    Object.keys(formData).forEach(key => {
+      if (formData[key].trim() !== '' && formData[key] !== initialFormData[key]) {
+        partialUpdateData[key] = formData[key];
+      }
+    });
 
-    if (isAtLeastOneFieldFilled) {
+    if (Object.keys(partialUpdateData).length > 0) {
       try {
-        const data = await putMovieData(formData);
-        console.log(data);
+        const data = await putMovieData(formData.name, partialUpdateData);
+        console.log('Update successful:', data);
       } catch (error) {
         console.log('There was an error!', error);
       }
@@ -168,6 +183,10 @@ const FilmForm = () => {
           <div className="form-group">
             <h3>Cast:</h3>
             <input type="text" name="cast" value={formData.cast} onChange={handleInputChange} />
+          </div>
+          <div className="form-group">
+            <h3>Rating:</h3>
+            <input type="number" step="0.1" name="rating" value={formData.rating} onChange={handleInputChange} />
           </div>
         </div>
       </div>
