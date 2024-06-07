@@ -1,34 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SaloonOperation.css';
 import { Link } from 'react-router-dom';
 
+
+
+
 function App() {
-  const [salons, setSalons] = useState([
-    { id: 1, name: 'SN 1', capacity: 50, layout: 'Theater', film: '', date: '', time: '' },
-    { id: 2, name: 'SN 2', capacity: 40, layout: 'Theater', film: '', date: '', time: '' },
-    { id: 3, name: 'SN 3', capacity: 60, layout: 'Theater', film: '', date: '', time: '' }
-  ]);
+  const [salons, setSalons] = useState([]);
+
+
+  useEffect(() => {
+    fetch('http://localhost:8080/api/cinemas')
+      .then(response => response.json())
+      .then(data => setSalons(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+
+    
 
   const [newSalon, setNewSalon] = useState({
-    name: '',
-    capacity: '',
-    layout: ''
-  });
+  name: '',
+  capacity: '',
+  price: '',
+});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewSalon({ ...newSalon, [name]: value });
   };
 
-  const handleAddSalon = () => {
-    if (!newSalon.name || !newSalon.capacity || !newSalon.layout) return;
-    setSalons([...salons, { ...newSalon, id: Date.now(), film: '', date: '', time: '' }]);
-    setNewSalon({ name: '', capacity: '', layout: '' });
-  };
 
-  const handleDeleteSalon = (id) => {
-    setSalons(salons.filter(salon => salon.id !== id));
-  };
+
 
 
   const handleDateInputChange = (id, e) => {
@@ -41,10 +45,59 @@ function App() {
     setSalons(salons.map(salon => salon.id === id ? { ...salon, time: value } : salon));
   };
 
-  const handleAddFilm = (id, filmName) => {
-    // Buraya film eklemek için gerekli işlemleri yapabilirsiniz
-    console.log(`Film eklendi salon id: ${id}, film adı: ${filmName}`);
+  const handleAddFilm = (cinemaId, filmName) => {
+  
+  fetch(`http://localhost:8080/api/cinemas/${cinemaId}/movies/${filmName}`, {
+    method: 'POST',
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    // If you want to do something after a successful add, like re-fetching the salons
+    // fetchSalons();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+};
+
+  const handleAddSalon = () => {
+    if (!newSalon.name || !newSalon.capacity) return;
+    setNewSalon({ name: '', capacity: ''});
+  
+    // Post the new salon to the database
+    fetch('http://localhost:8080/api/cinemas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newSalon),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   };
+  
+  const handleDeleteSalon = (id) => {
+    fetch(`http://localhost:8080/api/cinemas/${id}`, {
+      method: 'DELETE',
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      // If you want to do something after a successful delete, like re-fetching the salons
+      // fetchSalons();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  };
+
+
 
   return (
     <div className="transparent-container33">
@@ -75,10 +128,10 @@ function App() {
     onChange={handleInputChange}
   />
   <input
-    type="text"
-    name="layout"
-    placeholder="Seat arrangement"
-    value={newSalon.layout}
+    type="number"
+    name="price"
+    placeholder="Price"
+    value={newSalon.price}
     onChange={handleInputChange}
   />
   <button onClick={handleAddSalon}>Add saloon</button>
