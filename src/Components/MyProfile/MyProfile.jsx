@@ -15,7 +15,7 @@ const MyProfile = () => {
 
   useEffect(() => {
     // Kullanıcı bilgilerini API'den çek
-    fetch('http://localhost:8080/api/users/current') // Bu endpoint'i backendde oluşturmalısınız
+    fetch('http://localhost:8080/api/users') // Bu endpoint'i backendde oluşturmalısınız
       .then(response => response.json())
       .then(data => {
         setUser({
@@ -34,6 +34,47 @@ const MyProfile = () => {
     setSelectedItems(selectedItems.filter(item => item !== itemToRemove));
   };
 
+  const handleDeleteUser = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/users/delete`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (response.ok) {
+        console.log('User deleted successfully');
+      } else {
+        console.error('Failed to delete user');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/users/logout`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (response.ok) {
+        console.log('User logged out successfully');
+        window.location.href = "/"; // Redirect to "/"
+
+      } else {
+        console.error('Failed to log out user');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   return (
     <div className="transparent-container77">
       <div className="nav-buttons">
@@ -49,8 +90,38 @@ const MyProfile = () => {
         </div>
         <div className={`menu1 ${menuOpen ? 'open' : ''}`}>
           <ul>
-            <li><Link to="/" onClick={() => console.log('Log Out clicked')}>Log Out</Link></li>
-            <li><Link to="/" onClick={() => console.log('Delete Account clicked')}>Delete Account</Link></li>
+            <li>
+              <button 
+                onClick={handleLogout} 
+                style={{
+                  background: 'none',
+                  color: 'inherit',
+                  border: 'none',
+                  padding: 0,
+                  font: 'inherit',
+                  cursor: 'pointer',
+                  outline: 'inherit'
+                }}
+              >
+                Log Out
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={handleDeleteUser} 
+                style={{
+                  background: 'none',
+                  color: 'inherit',
+                  border: 'none',
+                  padding: 0,
+                  font: 'inherit',
+                  cursor: 'pointer',
+                  outline: 'inherit'
+                }}
+              >
+                Delete Account
+              </button>
+            </li>
           </ul>
         </div>
 
