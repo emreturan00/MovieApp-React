@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './page2.css';
-import titanic from '../Assets/titanic.png';
 import vizyon from '../Assets/vizyon.png';
 import tur from '../Assets/tur.png';
 import time from '../Assets/time.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 const Page = () => {
+    const navigate = useNavigate();
+
+
+    const location = useLocation();
+    const movie = location.state ? location.state.movie : null;
+    console.log(movie);
     const [isFavorited, setIsFavorited] = useState(false);
     const [rating, setRating] = useState(0);
 
@@ -21,33 +28,37 @@ const Page = () => {
     // Sabit bir IMDB puanı varsayalım (örneğin, 7.8)
     const imdbRating = 7.8;
 
+    if (!movie) {
+        return <div>No movie data available</div>;
+    }
+
     return (
         <div className="page">
             <div className="nav-buttons5">
-                <Link to="/2" className="nav-button">HOME</Link>
-                <Link to="/about-us2" className="nav-button">ABOUT US</Link>
-                <Link to="/our-team2" className="nav-button">OUR TEAM</Link>
+                <Link to="/" className="nav-button">HOME</Link>
+                <Link to="/about-us" className="nav-button">ABOUT US</Link>
+                <Link to="/our-team" className="nav-button">OUR TEAM</Link>
                 <Link to="/my-profile" className="nav-button">MY PROFILE</Link>
             </div>
             <div className="film-info">
                 <div className="film-image">
-                    <img src={titanic} alt="Titanic Resmi"/>
+                    <img src={movie.image} alt="Titanic Resmi"/>
                     <div className="vizyon-info">
-                        <img src={vizyon} alt="Vizyon Tarihi"/> <p>Vision date: 19.04.2024</p>
+                        <img src={vizyon} alt="Vizyon Tarihi"/> <p>{movie.releaseDate}</p>
                     </div>
                     <div className="tur-info">
-                        <img src={tur} alt="Tür"/> <p>Drama, Romance</p>
+                        <img src={tur} alt="Tür"/> <p>{movie.genre}</p>
                     </div>
                     <div className="time-info">
-                        <img src={time} alt="Time"/> <p>3h 14m</p>
+                        <img src={time} alt="Time"/> <p>{movie.duration}</p>
                     </div>
                 </div>
                 <div className="film-details">
-                    <h2 className="neon-blue">TITANIC</h2>
-                    <h3>Director: James Cameron</h3>
-                    <h3>Cast: Leonardo DiCaprio, Kate Winslet, Billy Zane</h3>
-                    <p className="neon-blue">Subject of the Movie</p>
-                    <p1 className="film-plot">Incorporating both historical and fictionalized aspects, it is based on accounts of the sinking of RMS Titanic in 1912. Leonardo DiCaprio and Kate Winslet star as members of different social classes who fall in love during the ship's maiden voyage.</p1>
+                    <h2 className="neon-blue">{movie.name}</h2>
+                    <h3>Director: {movie.director}</h3>
+                    <h3>Cast: {movie.cast}</h3>
+                    <p className="neon-blue">{movie.description}</p>
+                    <p className="film-plot">{movie.description}</p>
                     <div className="rating">
                         <span>Your Score: {rating}</span>
                         <div className="stars">
@@ -69,12 +80,14 @@ const Page = () => {
             </div>
             <div className="actions">
                 <div className="buttons">
-                    <button className="blue-btn" onClick={handleFavorite}>
+                    <button className="blue-btnp" onClick={handleFavorite}>
                         {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </button>
-                    <Link to="/buy-ticket2">
-                    <button className="blue-btn">Buy a ticket</button>
-                    </Link>
+                    <button 
+                        className="btn" 
+                        onClick={() => navigate('/buy-ticket2', { state: { movie } })}> 
+                        BUY TICKET
+                    </button>
                 </div>
             </div>
         </div>
