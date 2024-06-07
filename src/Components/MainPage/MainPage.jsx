@@ -22,10 +22,14 @@ function MainPage() {
                     id: index + 1,
                     ID: item.id,
                     image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
-                    author: item.director, // Assuming the fetched data has an 'author' property
+                    director: item.director, // Assuming the fetched data has an 'author' property
                     title: item.name, // Assuming the fetched data has a 'title' property
                     topic: 'MOVIE',
-                    description: item.cast // Assuming the fetched data has a 'description' property
+                    releaseDate: item.releaseDate,
+                    genre: item.genre,
+                    duration: item.duration,
+                    cast: item.cast,
+                    rating: item.rating,
                 }));
     
                 const thumbnailItems = data.map((item, index) => ({
