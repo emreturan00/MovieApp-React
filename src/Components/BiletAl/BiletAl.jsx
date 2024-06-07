@@ -140,7 +140,7 @@ const BiletAlSayfasi = () => {
         </div>
 
         <div className="bilet-sayac2">
-          <label>Not Student: </label>
+          <label>Adult: </label>
           <button onClick={handleTamAzalt}>-</button>
           <span className="bilet-sayac-yazi">{tamBiletSayisi}</span>
           <button onClick={handleTamArtir}>+</button>
