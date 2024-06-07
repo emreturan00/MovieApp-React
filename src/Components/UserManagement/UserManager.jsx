@@ -39,20 +39,24 @@ const UserManager = () => {
     }
   };
 
-  async function handleDeleteMovie(email) {
-    const response = await fetch(`http://localhost:8080/api/users/delete/${email}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
+  const handleDeleteUser = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/users/delete/${userData.email}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (response.ok) {
+        console.log('User deleted successfully');
+      } else {
+        console.error('Failed to delete user');
       }
-    });
-  
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    } catch (error) {
+      console.error('Error:', error);
     }
-  
-    return response;
-  }
+  };
 
   return (
     <div>
@@ -67,7 +71,7 @@ const UserManager = () => {
 
       {/* Main section */}
       <div className="main-section-management">
-        {/* Single Movie Form Section */}
+        {/* User Form Section */}
         <div className="movie-form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -82,10 +86,10 @@ const UserManager = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="useremail">User Email:</label>
+              <label htmlFor="email">User Email:</label>
               <input 
-                type="text" 
-                id="useremail" 
+                type="email" 
+                id="email" 
                 value={userData.email}
                 onChange={handleInputChange}
                 placeholder="Enter user email" 
@@ -93,10 +97,10 @@ const UserManager = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="userpassword">User Password:</label>
+              <label htmlFor="password">User Password:</label>
               <input 
-                type="text" 
-                id="userpassword" 
+                type="password" 
+                id="password" 
                 value={userData.password}
                 onChange={handleInputChange}
                 placeholder="Enter user password" 
@@ -105,7 +109,7 @@ const UserManager = () => {
             </div>
             <div className="button-group22">
               <button className="blue-btn22" type="submit">Update</button>
-              <button className="red-btn22" type="button" onClick={handleDeleteMovie}>Delete</button>
+              <button className="red-btn22" type="button" onClick={handleDeleteUser}>Delete</button>
             </div>
           </form>
         </div>
