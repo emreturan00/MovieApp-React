@@ -17,8 +17,20 @@ const Page = () => {
     const [isFavorited, setIsFavorited] = useState(false);
     const [rating, setRating] = useState(0);
 
-    const handleFavorite = () => {
-        setIsFavorited(!isFavorited);
+    const handleFavorite = async (movieId) => {
+        const response = await fetch(`http://localhost:8080/api/users/favorite/${movieId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                // Include additional headers if needed, like authorization tokens
+            },
+        });
+    
+        if (response.ok) {
+            setIsFavorited(!isFavorited);
+        } else {
+            console.error('Failed to favorite movie');
+        }
     };
 
     const handleRating = (value) => {
@@ -80,7 +92,7 @@ const Page = () => {
             </div>
             <div className="actions">
                 <div className="buttons">
-                    <button className="blue-btnp" onClick={handleFavorite}>
+                    <button className="blue-btnp" onClick={() => handleFavorite(movie.ID)}>
                         {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </button>
                     <button 
