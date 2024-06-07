@@ -1,0 +1,97 @@
+body {
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Ensures minimum height */
+    padding-top: 60px; /* Add top padding to account for the fixed header */
+}
+
+.nav-buttons-management {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it stays on top of other content */
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.user-management-management {
+    color: white;
+    text-align: center;
+}
+
+.nav-button-management {
+    color: #03bcf4;
+    padding: 1vh 2vw;
+    font-size: 2vh;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-button-management:hover {
+    color: #fff;
+    text-shadow: 0 0 1vw #03bcf4, 0 0 2vw #03bcf4, 0 0 4vw #03bcf4, 0 0 8vw #03bcf4, 0 0 16vw #03bcf4;
+    border-bottom: 0.3vh solid #03bcf4;
+}
+
+/* Section styles for Add Account, Accounts, and Users */
+.section-accounts-management {
+    background-color: black; /* Black background for all sections */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-users-management {
+    background-color: black; /* Black background for all sections */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-accounts-management h2, .section-users-management h2 {
+    color: #03bcf4; /* Cyan color for section headers */
+}
+
+.button-management {
+    background-color: #03bcf4;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.button-management:hover {
+    box-shadow: 0 0 10px #03bcf4, 0 0 20px #03bcf4, 0 0 30px #03bcf4; /* Glowing effect */
+}
+
+.gradient-background-management {
+    background: linear-gradient(to bottom, #000000, #03bcf456); /* Adjust the colors as needed */
+}
+
+.App-management {
+    background: black; /* Full viewport black background */
+    height: 100vh; /* Make sure the gradient covers the full height of the viewport */
+    width: 100%; /* Cover the full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Flexbox layout for main-section */
+.main-section-management {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px;
+}

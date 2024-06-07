@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './MyProfile.css';
 
@@ -11,6 +11,20 @@ import img4 from '../Assets/img6.webp'
 const MyProfile = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState({ name: '', email: '' });
+
+  useEffect(() => {
+    // Kullanıcı bilgilerini API'den çek
+    fetch('http://localhost:8080/api/users/current') // Bu endpoint'i backendde oluşturmalısınız
+      .then(response => response.json())
+      .then(data => {
+        setUser({
+          name: data.name,
+          email: data.email
+        });
+      })
+      .catch(error => console.error('Error fetching user data:', error));
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -42,13 +56,10 @@ const MyProfile = () => {
 
         <h1>User Card</h1>
         <div className="name">
-          Name:<span> Buket </span>
-        </div>
-        <div className="surname">
-          Surname:<span> Arslan </span>
+          Name:<span> {user.name} </span>
         </div>
         <div className="email">
-          Email: <span> buketarslan@example.com </span>
+          Email: <span> {user.email} </span>
         </div>
         <img src={profileIcon} alt="User Icon" className="profile-icon" />
       </div>

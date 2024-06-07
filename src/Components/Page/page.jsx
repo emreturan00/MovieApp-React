@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './page.css';
 import titanic from '../Assets/titanic.png';
 import vizyon from '../Assets/vizyon.png';
 import tur from '../Assets/tur.png';
 import time from '../Assets/time.png';
+import { Link, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 const Page = () => {
     const [isFavorited, setIsFavorited] = useState(false);
     const [rating, setRating] = useState(0);
+    const location = useLocation();
+    const movie = location.state ? location.state.movie : null;
+    console.log(movie);
+
+    const navigate = useNavigate();
+
 
     const handleFavorite = () => {
         setIsFavorited(!isFavorited);
@@ -69,7 +77,7 @@ const Page = () => {
             </div>
             <div className="actions">
                 <div className="buttons">
-                    <button className="blue-btn" onClick={handleFavorite}>
+                    <button className="blue-btnp" onClick={handleFavorite}>
                         {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
                     </button>
                     <Link to="/buy-ticket">

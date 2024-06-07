@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './MainPage.css'; 
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import img1 from '../Assets/img5.png';
 import img2 from '../Assets/img2.jpg';
@@ -9,6 +10,7 @@ import img4 from '../Assets/img4.jpg';
 
 function MainPage() {
     const [cards, setCards] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch data from the API
@@ -18,6 +20,7 @@ function MainPage() {
                 // Map the fetched data to the format needed for sliderItems and thumbnailItems
                 const sliderItems = data.map((item, index) => ({
                     id: index + 1,
+                    ID: item.id,
                     image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
                     author: item.director, // Assuming the fetched data has an 'author' property
                     title: item.name, // Assuming the fetched data has a 'title' property
@@ -27,6 +30,7 @@ function MainPage() {
     
                 const thumbnailItems = data.map((item, index) => ({
                     id: index + 1,
+                    ID: item.id,
                     image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
                     title: item.name, // Assuming the fetched data has a 'title' property
                     description: item.cast // Assuming the fetched data has a 'description' property
@@ -35,6 +39,8 @@ function MainPage() {
                 // Set the state variables
                 setSliderItems(sliderItems);
                 setThumbnailItems(thumbnailItems);
+
+                setCards(data)
             });
     }, []);
 
@@ -137,12 +143,16 @@ function MainPage() {
                                 <div className="topic">{item.topic}</div>
                                 <div className="des">{item.description}</div>
                                 <div className="buttons">     
-                                    <Link to="/buy-ticket2">
-                                    <button>BUY TICKET</button>
-                                    </Link>
-                                    <Link to="/page">
-                                    <button>LOOK DETAILS </button>
-                                    </Link>
+                                <button 
+                                        className="btn" 
+                                        onClick={() => navigate('/buy-ticket2', { state: { movie: item } })}> 
+                                        BUY TICKET
+                                    </button>
+                                    <button 
+                                        className="btn" 
+                                        onClick={() => navigate('/page', { state: { movie: item } })}> 
+                                        LOOK DETAILS
+                                    </button>
                                 </div>
                             </div>
                         </div>

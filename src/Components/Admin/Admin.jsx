@@ -1,10 +1,10 @@
-
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./Admin.css";
 
 const MainPage = () => {
   const handleMouseMove = (event) => {
-    const cards = document.querySelectorAll(".card");
+    const cards = document.querySelectorAll(".card-custom");
     cards.forEach((card) => {
       const rect = card.getBoundingClientRect();
       const x = event.clientX - rect.left;
@@ -15,23 +15,28 @@ const MainPage = () => {
     });
   };
 
-  const titles = ["Movie Editing", "Organizing a Session", "Hall Management", "Ticket Sales Reports", "User Management", "Avatar Editing"]; // Özelleştirilebilir başlık metinleri
-
+  const titles = ["Film Add/Delete", "Saloon/Seans Edition", "User Management"];
+  const links = [
+    "/FilmForm",  // Example paths to different pages
+    "/saloon-operation",
+    "/UserManagement",
+  ];
+  
   return (
-    <div className="main-container99">
-      <div className="cards99" onMouseMove={handleMouseMove}>
+    <div className="main-container-custom">
+      <div className="cards-custom" onMouseMove={handleMouseMove}>
         {titles.map((title, index) => (
-          <div className={`card99 ${index >= 4 ? 'lower-cards99' : ''}`} key={index}>
-            <div className="card-content99"></div>
-            <div className={`card-title99-${index}`}>{title}</div>
-            <div className="card-button99">
-              <a href="#" className="blue-btn99">Details</a>
+          <div className={`card-custom ${index >= 4 ? 'lower-cards-custom' : ''}`} key={index}>
+            <div className="card-content-custom"></div>
+            <div className={`card-title-custom-${index}`}>{title}</div>
+            <div className="card-button-custom">
+              <Link to={links[index]} className="blue-btn-custom">Details</Link>
             </div>
-            <div className="card-info99">General Info</div>
+            <div className="card-info-custom">General Info</div>
           </div>
         ))}
       </div>
-      <div className="currently-showing99">ADMIN</div>
+      <div className="currently-showing-custom">DASHBOARD</div>
     </div>
   );
 };

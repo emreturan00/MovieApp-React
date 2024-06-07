@@ -5,6 +5,17 @@
   --ciSecond: #0c1016;
 }
 
+
+.salon-form33 input {
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #02b0cf, 0 0 12px #000000;
+  background-color: #ffffff;
+  height: 40px;
+  width: 5cm ;
+}
+
 .SaloonOperation body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -48,6 +59,7 @@
   border-bottom: 0.3vh solid #03bcf4; 
 }
 
+
 .films33 h3 {
   margin-top: 50px;
   color: #03bcf4;
@@ -59,6 +71,16 @@
   overflow-x: hidden;
   
 }
+
+.App33.input{
+  margin-top: 5cm;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+  margin-left: 200px;
+}
+
 
 
 .App33 {

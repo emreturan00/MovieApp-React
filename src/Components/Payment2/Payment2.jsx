@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Payment.css'; // Ensure the CSS is correctly imported
+import './Payment2.css'; // Ensure the CSS is correctly imported
 import { Link, Navigate } from 'react-router-dom';
 
 function Payment() {
@@ -52,7 +52,7 @@ function Payment() {
                 <Link to="/" className="nav-button">HOME</Link>
                 <Link to="/about-us" className="nav-button">ABOUT US</Link>
                 <Link to="/our-team" className="nav-button">OUR TEAM</Link>
-                <Link to="/login" className="nav-button">LOGIN/SIGNUP</Link>
+                <Link to="/my-profile" className="nav-button">MY PROFILE</Link>
             </div>
             <form onSubmit={handleSubmit}>
                 <h1>Payment Details</h1>

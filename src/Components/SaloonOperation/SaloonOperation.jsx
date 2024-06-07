@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './SaloonOperation.css';
+import { Link } from 'react-router-dom';
 
 function App() {
   const [salons, setSalons] = useState([
-    { id: 1, name: 'Saloon 1', capacity: 50, layout: 'Theater', film: '', date: '', time: '' },
-    { id: 2, name: 'Saloon 2', capacity: 40, layout: 'Theater', film: '', date: '', time: '' },
-    { id: 3, name: 'Saloon 3', capacity: 60, layout: 'Theater', film: '', date: '', time: '' }
+    { id: 1, name: 'SN 1', capacity: 50, layout: 'Theater', film: '', date: '', time: '' },
+    { id: 2, name: 'SN 2', capacity: 40, layout: 'Theater', film: '', date: '', time: '' },
+    { id: 3, name: 'SN 3', capacity: 60, layout: 'Theater', film: '', date: '', time: '' }
   ]);
 
   const [newSalon, setNewSalon] = useState({
@@ -48,39 +49,40 @@ function App() {
   return (
     <div className="transparent-container33">
     <div className="nav-buttons">
-      <a href="#" className="nav-button">DASHBOARD</a>
-      <a href="#" className="nav-button">FILM ADD/DELETE</a>
-      <a href="#" className="nav-button">SEANS/SALOON EDITION</a>
-      <a href="#" className="nav-button">REPORTS/STATISTICS</a>
-      <a href="#" className="nav-button">USER MANAGEMENT</a>
+     <Link to="/Admin" className="nav-button-management">DASHBOARD</Link>
+      <Link to="/FilmForm" className="nav-button-management">FILM ADD/DELETE</Link>
+      <Link to="/saloon-operation" className="nav-button-management">SEANS/SALOON EDITION</Link>
+      <Link to="/UserManagement" className="nav-button-management">USER MANAGEMENT</Link>
+      <Link to="/" className="nav-button-management">LOG OUT</Link>
     </div>
+
     
     <div className="App33">
       <h1>SALOON OPERATION</h1>
       <div className="salon-form33">
-        <input
-          type="text"
-          name="name"
-          placeholder="Saloon name"
-          value={newSalon.name}
-          onChange={handleInputChange}
-        />
-        <input
-          type="number"
-          name="capacity"
-          placeholder="Capacity"
-          value={newSalon.capacity}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="layout"
-          placeholder="Seat arrangement"
-          value={newSalon.layout}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleAddSalon}>Add saloon</button>
-      </div>
+  <input
+    type="text"
+    name="name"
+    placeholder="Saloon name"
+    value={newSalon.name}
+    onChange={handleInputChange}
+  />
+  <input
+    type="number"
+    name="capacity"
+    placeholder="Capacity"
+    value={newSalon.capacity}
+    onChange={handleInputChange}
+  />
+  <input
+    type="text"
+    name="layout"
+    placeholder="Seat arrangement"
+    value={newSalon.layout}
+    onChange={handleInputChange}
+  />
+  <button onClick={handleAddSalon}>Add saloon</button>
+</div>
       <div className="salon-list">
         {salons.map(salon => (
           <div key={salon.id} className="salon-container">

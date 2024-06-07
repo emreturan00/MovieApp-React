@@ -26,7 +26,7 @@ const Login = () => {
                 const user = await response.json();
                 console.log("Login successful: ", user);
                 if (user.email.endsWith("@khascinema.com")) {
-                    navigate('/saloon-operation'); // Admin kullanıcıları için yönlendirme
+                    navigate('/Admin'); // Admin kullanıcıları için yönlendirme
                 } else {
                     navigate('/2'); // Normal kullanıcılar için yönlendirme
                 }

@@ -620,12 +620,18 @@ a {
     
 }
 
+.btn{
+height:1.5cm;
+}
+
+
 .btns2 {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 85vh; 
     flex-direction: row;
+    
 }
 
 a {
@@ -977,6 +983,7 @@ body {
 }
 
 .btn-currently2 {
+    height: 2cm;
     cursor: pointer;
     margin-top: 1.5rem;
     padding: 0.75rem 1.5rem;
@@ -986,7 +993,7 @@ body {
     text-transform: uppercase;
     color: white;
     background-color: #03bcf4; 
-    border: none;
+    
     transition: background-color 0.3s ease; 
 }
 

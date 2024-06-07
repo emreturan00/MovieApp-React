@@ -21,6 +21,8 @@ import Payment from './Components/Payment/Payment';
 import SaloonOperation from './Components/SaloonOperation/SaloonOperation';
 import FilmForm from './Components/FilmForm/FilmForm';
 import Admin from './Components/Admin/Admin';
+import UserManagement from './Components/UserManagement/UserManager';
+import Payment2 from './Components/Payment2/Payment2';
 
 
 
@@ -48,9 +50,11 @@ function App() {
           <Route path="/our-team2" element={<OurTeam2 />} />
           <Route path="/page2" element={<Page2/>} />
           <Route path="/payment" element={<Payment/>} />
+          <Route path="/payment2" element={<Payment2/>} />
           <Route path="/saloon-operation" element={<SaloonOperation/>} />
           <Route path="/FilmForm" element={<FilmForm/>} />
           <Route path="/Admin" element={<Admin/>} />
+          <Route path="/UserManagement" element={<UserManagement/>} />
           
 
         </Routes>

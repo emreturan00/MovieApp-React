@@ -142,7 +142,7 @@ const handleRowClick = (rowIndex) => {
         </div>
       </div>
       
-        <button className="nav-button" onClick={handleSubmit}> Go To Payment </button>
+      <Link to="/payment2" className="blue-btn" onClick={handleSubmit}>Go to Payment</Link>
       </div>
     
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './BiletAl.css';
 import titanic from '../Assets/titanic.png';
 import { Link, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const BiletAlSayfasi = () => {
   const [secilenSinema, setSecilenSinema] = useState('');

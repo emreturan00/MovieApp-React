@@ -1,0 +1,25 @@
+.nav-buttons5 {
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-button {
+    color: #03bcf4;
+    padding: 1vh 2vw;
+    font-size: 2vh;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-button:hover {
+    color: #fff;
+    text-shadow: 0 0 1vw #03bcf4, 0 0 2vw #03bcf4, 0 0 4vw #03bcf4, 0 0 8vw #03bcf4, 0 0 16vw #03bcf4;
+    border-bottom: 0.3vh solid #03bcf4;
+}

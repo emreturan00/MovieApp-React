@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import './MainPage2.css'; 
 import { Link } from 'react-router-dom';
@@ -61,7 +59,7 @@ function MainPage() {
           <div className="content-currently">
             <h2 className="title-currently">{title}</h2>
             <p className="copy-currently">{copy}</p>
-            <Link to="/buy-ticket" className="btn-currently2">{button}</Link>
+            <Link to="/buy-ticket" className="btn-currently2" >BOOK NOW </Link>
           </div>
         </div>
     );
@@ -128,9 +126,9 @@ function MainPage() {
             </div>
 
             <div className="nav-buttons">
-                <Link to="/" className="nav-button">HOME</Link>
-                <Link to="/about-us" className="nav-button">ABOUT US</Link>
-                <Link to="/our-team" className="nav-button">OUR TEAM</Link>
+                <Link to="/2" className="nav-button">HOME</Link>
+                <Link to="/about-us2" className="nav-button">ABOUT US</Link>
+                <Link to="/our-team2" className="nav-button">OUR TEAM</Link>
                 <Link to="/my-profile" className="nav-button">MY PROFILE</Link>
             </div>
 
@@ -152,7 +150,7 @@ function MainPage() {
                                     </button>
                                     <button 
                                         className="btn" 
-                                        onClick={() => navigate('/page', { state: { movie: item } })}> 
+                                        onClick={() => navigate('/page2', { state: { movie: item } })}> 
                                         LOOK DETAILS
                                     </button>
                                 </div>
