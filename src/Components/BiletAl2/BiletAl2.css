@@ -16,6 +16,14 @@
   
 }
 
+.price-display {
+  height: 400px;
+  width: 300px;
+  padding: 10px 20px; /* Padding for better visibility */
+  border-radius: 5px; /* Rounded corners */
+
+}
+
 
 .bilet-al-container h1 {
   color: #03bcf4;
@@ -35,6 +43,7 @@
   margin-top: 30px;
   margin-left: 200px;
 }
+
 
 .secim {
   margin-right: 20px;

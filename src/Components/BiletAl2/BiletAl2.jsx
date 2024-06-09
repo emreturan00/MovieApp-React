@@ -10,7 +10,10 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
 
   const tarihler = ['2024-04-24', '2024-04-25', '2024-04-26'];
   const seanslar = ['10:00', '13:00', '16:00'];
-  
+
+  const ogrenciPrice = selectedCinemaPrice*0.8; // price for one student ticket
+  const tamPrice = selectedCinemaPrice; // price for one adult ticket
+  const [totalPrice, setTotalPrice] = useState(0);  
 
   useEffect(() => {
 
@@ -67,24 +70,36 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
   };
 
   const handleOgrenciArtir = () => {
-    setOgrenciBiletSayisi(prevSayi => prevSayi + 1);
-  };
-
+    const newOgrenciBiletSayisi = ogrenciBiletSayisi + 1;
+    setOgrenciBiletSayisi(newOgrenciBiletSayisi);
+    const newTotalPrice = newOgrenciBiletSayisi * ogrenciPrice + tamBiletSayisi * tamPrice;
+    setTotalPrice(newTotalPrice);
+};
+  
   const handleOgrenciAzalt = () => {
-    if (ogrenciBiletSayisi > 0) {
-      setOgrenciBiletSayisi(prevSayi => prevSayi - 1);
-    }
-  };
-
+  if (ogrenciBiletSayisi > 0) {
+    const newOgrenciBiletSayisi = ogrenciBiletSayisi - 1;
+    setOgrenciBiletSayisi(newOgrenciBiletSayisi);
+    const newTotalPrice = newOgrenciBiletSayisi * ogrenciPrice + tamBiletSayisi * tamPrice;
+    setTotalPrice(newTotalPrice);
+  }
+};
+  
   const handleTamArtir = () => {
-    setTamBiletSayisi(prevSayi => prevSayi + 1);
-  };
-
+    const newTamBiletSayisi = tamBiletSayisi + 1;
+    setTamBiletSayisi(newTamBiletSayisi);
+    const newTotalPrice = ogrenciBiletSayisi * ogrenciPrice + newTamBiletSayisi * tamPrice;
+    setTotalPrice(newTotalPrice);
+};
+  
   const handleTamAzalt = () => {
     if (tamBiletSayisi > 0) {
-      setTamBiletSayisi(prevSayi => prevSayi - 1);
+      const newTamBiletSayisi = tamBiletSayisi - 1;
+      setTamBiletSayisi(newTamBiletSayisi);
+      const newTotalPrice = ogrenciBiletSayisi * ogrenciPrice + newTamBiletSayisi * tamPrice;
+      setTotalPrice(newTotalPrice);
     }
-  };
+};
 
   const handleSubmit = async () => {
     const biletAlData = {
@@ -130,12 +145,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
   };
 
   return (
-    <div className="bilet-al-container">
-      {selectedCinemaPrice && (
-        <div className="price-display">
-          Price: {selectedCinemaPrice}
-        </div>
-      )}
+    <div className="bilet-al-container">  
       <div className="nav-buttons">
         <Link to="/2" className="nav-button">HOME</Link>
         <Link to="/about-us2" className="nav-button">ABOUT US</Link>
@@ -183,10 +193,18 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
           <button onClick={handleTamAzalt}>-</button>
           <span className="bilet-sayac-yazi">{tamBiletSayisi}</span>
           <button onClick={handleTamArtir}>+</button>
+          {selectedCinemaPrice && (
+          <span className="secimler">
+            Price: {totalPrice} TL
+          </span>)}
         </div>
+
+        
       </div>
       <img src={movie.image} alt={movie.name} className="film-posteri" />
       <div className="film-adi"> </div>
+
+      
 
       <button
         className="blue-btn6"
