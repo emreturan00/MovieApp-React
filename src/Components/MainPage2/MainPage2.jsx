@@ -9,7 +9,6 @@ import img3 from '../Assets/img3.jpg';
 import img4 from '../Assets/img4.jpg';
 
 function MainPage() {
-    const [cards, setCards] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,18 +38,29 @@ function MainPage() {
                     title: item.name, // Assuming the fetched data has a 'title' property
                     description: item.cast // Assuming the fetched data has a 'description' property
                 }));
+
+                const cardItems = data.map((item, index) => ({
+                    id: index + 1,
+                    ID: item.id,
+                    image: require(`../Assets/${item.imageLocation}`), // Dynamically require the image
+                    title: item.name, // Assuming the fetched data has a 'title' property
+                    description: item.cast // Assuming the fetched data has a 'description' property
+                }));
+
+
     
                 // Set the state variables
                 setSliderItems(sliderItems);
                 setThumbnailItems(thumbnailItems);
 
-                setCards(data)
+                setCardItems(cardItems);
             });
     }, []);
 
 
     
     const [sliderItems, setSliderItems] = useState([]); 
+    const [cardItems, setCardItems] = useState([]); 
     const [thumbnailItems, setThumbnailItems] = useState([]); 
     const [selectedItems, setSelectedItems] = useState([]); 
     const [locationMenuOpen, setLocationMenuOpen] = useState(false);
@@ -58,15 +68,15 @@ function MainPage() {
     
   
 
-    const Card = ({ title, copy, button }) => (
-        <div className="card-currently">
-          <div className="content-currently">
-            <h2 className="title-currently">{title}</h2>
-            <p className="copy-currently">{copy}</p>
-            <Link to="/buy-ticket" className="btn-currently2" >BOOK NOW </Link>
-          </div>
-        </div>
-    );
+    // const Card = ({ title, copy, button }) => (
+    //     <div className="card-currently">
+    //       <div className="content-currently">
+    //         <h2 className="title-currently">{title}</h2>
+    //         <p className="copy-currently">{copy}</p>
+    //         <Link to="/buy-ticket" className="btn-currently2" >BOOK NOW </Link>
+    //       </div>
+    //     </div>
+    // );
     
 
     
@@ -180,57 +190,20 @@ function MainPage() {
                 <div className="time"></div>
             </div>
 
-            <div className="coming-soon">COMING SOON</div>
             <div className="currently-showing">CURRENTLY SHOWING</div>
-            <div className="container2">
-                <div className="card">
-                    <img className="background" src={img1} alt="" />
-                    <div className="card-content">
-                        <h3 className="title">COMING SOON 1</h3>
-                    </div>
-                    <div className="backdrop"></div>
-                </div>
 
-                <div className="card">
-                    <img className="background" src={img2} alt="" />
-                    <div className="card-content">
-                        <h3 className="title">COMING SOON 2</h3>
+           
+            <div className="page-content-currently">
+                    {cardItems.map((item, index) => (
+                    <div key={index} className="movie-card">
+                        <img src={item.image} alt={item.title}  />
+                        <h2>{item.title}</h2>
+                        <p>{item.copy}</p>
+                        <button className="buy-ticket-button" onClick={() => navigate('/buy-ticket2', { state: { movie: item } })}>Buy Ticket</button>
                     </div>
-                    <div className="backdrop"></div>
-                </div>
-
-                <div className="card">
-                    <img className="background" src={img3} alt="" />
-                    <div className="card-content">
-                        <h3 className="title">COMING SOON 3</h3>
-                    </div>
-                    <div className="backdrop"></div>
-                </div>
-
-                <div className="card">
-                    <img className="background" src={img4} alt="" />
-                    <div className="card-content">
-                        <h3 className="title">COMING SOON 4</h3>
-                    </div>
-                    <div className="backdrop"></div>
-                </div>
-            </div>
-
-            <div className="selected-items">
-                <ul>
-                    {selectedItems.map((item, index) => (
-                        <li key={index}>
-                            {item}
-                            <button onClick={() => handleRemoveItem(item)}>x</button>
-                        </li>
                     ))}
-                </ul>
-            </div>
-            <div className="page-content-currently"> {/* Updated class name */}
-            {cards.map((card, index) => (
-            <Card key={index} title={card.title} copy={card.copy} button={card.button} />
-            ))}
-            </div>
+                </div>
+
 
             <div className="btns2">
             <a
@@ -289,20 +262,9 @@ function MainPage() {
             <footer className="site-footer2">
                 <div className="container2">
                     <div className="row">
-                        <div className="col-xs-6 col-md-3 text-center">
-                            <h6 className="footer-title2">CURRENTLY SHOWING</h6>
-                            <ul className="footer-links2">
-                                <li><button>CS1</button></li>
-                                <li><button>CS2</button></li>
-                                <li><button>CS3</button></li>
-                                <li><button>CS4</button></li>
-                                <li><button>CS5</button></li>
-                                <li><button>CS6</button></li>
-                            </ul>
-                        </div>
+                        
 
                         <div className="col-xs-6 col-md-3 text-center">
-                            <h6 className="footer-title2">COMING SOON</h6>
                             <ul className="footer-links2">
                                 <li><button>Home</button></li>
                                 <li><button>Contact Us</button></li>

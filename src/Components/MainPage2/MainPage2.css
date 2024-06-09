@@ -269,6 +269,40 @@ h2 {
     font-weight: bold;
     transition: .5s;
 }
+.movie-card {
+    position: relative;
+    width: 250px;
+    height: 450px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    transition: .5s;
+    margin-top: 20px;
+}
+.buy-ticket-button {
+    position: absolute;
+    bottom: 20px;
+    left: auto;
+    border: none;
+    background-color: #03bcf4;
+    /* other styles */
+    border-radius: 15px;
+    padding: 15px 30px; /* Increase padding for larger button */
+    font-size: 12px; /* Increase font size for larger text */
+}
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    
+}
 
 .arrows button:hover {
     background-color: #fff;
@@ -952,6 +986,10 @@ body {
 
 .card-currently:nth-child(4):before {
     background-image: url('../Assets/img4.jpg');
+}
+.movie-card img {
+    height: 450px;
+    width: auto;
 }
 
 .content-currently {
