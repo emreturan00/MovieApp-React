@@ -108,7 +108,8 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
       secilenTarih,
       secilenSeans,
       ogrenciBiletSayisi,
-      tamBiletSayisi
+      tamBiletSayisi,
+      price: totalPrice
     };
 
     try {
