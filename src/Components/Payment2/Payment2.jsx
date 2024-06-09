@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Payment2.css'; // Ensure the CSS is correctly imported
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 
 async function postPaymentData(paymentData) {
     const response = await fetch('http://localhost:8080/api/payment', {
@@ -19,6 +21,12 @@ async function postPaymentData(paymentData) {
 }
 
 function Payment() {
+    
+    const location = useLocation();
+    const totalPrice = location.state.totalPrice;
+
+    console.log('Total Price:', totalPrice);
+
     const [paymentData, setPaymentData] = useState({
         amount: '',
         cardNumber: '',
@@ -60,11 +68,15 @@ function Payment() {
         setPaymentData({ ...paymentData, [event.target.name]: event.target.value });
     };
 
+
     if (isSubmitted) {
         return (
             <div className="confirmation55">
                 <h2>Thank you for your payment!</h2>
                 <p>Your transaction has been processed.</p>
+                <Link to="/2">
+                    <button className='button55'>Go Back to Home</button>
+                </Link>
             </div>
         );
     }

@@ -125,7 +125,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
         const responseData = await response.json();
         console.log('MySQL response:', responseData);
         alert('Ticket successfully saved!');
-        navigate('/seats2');
+        navigate('/seats2', { state: { totalPrice } });
       } else {
         const errorData = await response.json();
         console.error('Error saving ticket:', errorData);

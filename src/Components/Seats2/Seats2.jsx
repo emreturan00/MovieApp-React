@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+
 
 import './Seats2.css';
 import './styles2.css';
 
 const Seats = ({ ogrenciBiletSayisi, tamBiletSayisi }) => {
+
+ 
+
+  const location = useLocation();
+  const totalPrice = location.state.totalPrice;
+
+  const navigate = useNavigate();
+
+  console.log('Total Price:', totalPrice);
+
   const [secilen_koltuklar, setsecilen_koltuklar] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -48,6 +62,7 @@ const handleRowClick = (rowIndex) => {
       return;
     }
 
+
     
     const biletAlData = {
 
@@ -59,7 +74,7 @@ const handleRowClick = (rowIndex) => {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/api/seats/save', {
+      const response = await fetch('http://localhost:8080/api/biletal/save', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -68,9 +83,11 @@ const handleRowClick = (rowIndex) => {
       });
 
       if (response.ok) {
+        navigate('/payment2', { state: { totalPrice } });
         const responseData = await response.json();
         console.log('MySQL response:', responseData);
         alert('Seats successfully saved!');
+
       } else {
         const errorData = await response.json();
         console.error('Error saving seats:', errorData);
