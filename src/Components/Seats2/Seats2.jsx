@@ -15,14 +15,24 @@ const Seats = ({ ogrenciBiletSayisi, tamBiletSayisi }) => {
   const location = useLocation();
   const totalPrice = location.state.totalPrice;
 
+  const cevap = location.state.cevap;
+
+const occupiedSeats = String(cevap)
+  .split(',')
+  .map(Number)
+  .filter(Boolean);
+
   const navigate = useNavigate();
 
-  console.log('Total Price:', totalPrice);
 
   const [secilen_koltuklar, setsecilen_koltuklar] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSeatClick = (seatIndex) => {
+  if (occupiedSeats.includes(seatIndex)) {
+    return; // Don't do anything if the seat is occupied
+  }
+
   setsecilen_koltuklar(prevsecilen_koltuklar => {
     if (prevsecilen_koltuklar.includes(seatIndex)) {
       return prevsecilen_koltuklar.filter(seat => seat !== seatIndex);
@@ -130,6 +140,7 @@ const handleRowClick = (rowIndex) => {
             { Options here }
           </select>
         </div> */}
+        
         <ul className="ShowCase">
           <li>{secilen_koltuklar.length > 0 ? secilen_koltuklar.join(', ') : 'N/A'}</li>
           <li>Selected</li>
@@ -140,10 +151,18 @@ const handleRowClick = (rowIndex) => {
           <div className="seats">
             {[...Array(64)].map((_, seatIndex) => (
               <div
-                className={`seat ${secilen_koltuklar.includes(seatIndex) ? 'selected' : ''}`}
-                key={seatIndex}
-                onClick={() => handleSeatClick(seatIndex)}
-              ></div>
+  className={`
+    seat 
+    ${secilen_koltuklar.includes(seatIndex) ? 'selected' : ''}
+    ${occupiedSeats.includes(seatIndex) ? 'occupied' : ''}
+  `}
+  key={seatIndex}
+  onClick={() => {
+    if (!occupiedSeats.includes(seatIndex)) {
+      handleSeatClick(seatIndex);
+    }
+  }}
+></div>
             ))}
           </div>
           <div className="row-buttons">

@@ -1,23 +1,32 @@
 import './BiletAl2.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSayisi, setTamBiletSayisi}) => {
 
   const [sinemalar, setSinemalar] = useState([]);
   const [selectedCinemaPrice, setSelectedCinemaPrice] = useState(null);
+  const [secilenKoltuklar, setSecilenKoltuklar] = useState([]);
+  const [cevap, setCevap] = useState([]);
 
   const tarihler = ['2024-04-24', '2024-04-25', '2024-04-26'];
   const seanslar = ['10:00', '13:00', '16:00'];
-
-  const ogrenciPrice = selectedCinemaPrice*0.8; // price for one student ticket
+  const ogrenciPrice = selectedCinemaPrice * 0.8; // price for one student ticket
   const tamPrice = selectedCinemaPrice; // price for one adult ticket
   const [totalPrice, setTotalPrice] = useState(0);  
 
-  useEffect(() => {
+  const location = useLocation();
+  const movie = location.state ? location.state.movie : null;
 
-    
+  const [secilenSinema, setSecilenSinema] = useState('');
+  const [secilenTarih, setSecilenTarih] = useState('');
+  const [secilenSeans, setSecilenSeans] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+  }, [secilenKoltuklar]);
+
+  useEffect(() => {
     fetch('http://localhost:8080/api/cinemas')
       .then(response => {
         if (!response.ok) {
@@ -32,7 +41,6 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
           name: item.name,
           price: item.price
         }));
-
         setSinemalar(cinemas);
       })
       .catch(error => {
@@ -40,25 +48,54 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
       });
   }, []);
 
-  const location = useLocation();
-  const movie = location.state ? location.state.movie : null;
+  const getSeatsBySelections = async () => {
+    if (!movie || !secilenSinema || !secilenTarih || !secilenSeans) return;
 
-  const [secilenSinema, setSecilenSinema] = useState('');
-  const [secilenTarih, setSecilenTarih] = useState('');
-  const [secilenSeans, setSecilenSeans] = useState('');
+    try {
+      const response = await fetch('http://localhost:8080/api/biletal/getSeatsBySelections', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          secilenFilm: movie.ID,
+          secilenSinema: secilenSinema,
+          secilenTarih: secilenTarih,
+          secilenSeans: secilenSeans,
+        }),
+      });
 
-  const navigate = useNavigate();
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const responseSecilenKoltuklar = await response.json();
+      console.log('Response:', responseSecilenKoltuklar);
+      setSecilenKoltuklar(responseSecilenKoltuklar);
+      return responseSecilenKoltuklar;
+    } catch (error) {
+      console.error('An error occurred while fetching seats:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (secilenSinema && secilenTarih && secilenSeans) {
+      getSeatsBySelections();
+    }
+  }, [secilenSinema, secilenTarih, secilenSeans]);
 
   const handleSinemaSecim = (sinemaId) => {
-    console.log("Selected Cinema ID:", sinemaId);
-    const selectedCinema = sinemalar.find(sinema => sinema.id === parseInt(sinemaId)); // Convert sinemaId to integer
+    const selectedCinema = sinemalar.find(sinema => sinema.ID === parseInt(sinemaId)); // Convert sinemaId to integer
+    if (selectedCinema) {
+      setSelectedCinemaPrice(selectedCinema.price);
+    } else {
+      console.log("Cinema not found");
+      setSelectedCinemaPrice(null);
+    }
     setSecilenSinema(sinemaId);
     setSecilenTarih('');
     setSecilenSeans('');
-    setSelectedCinemaPrice(selectedCinema ? selectedCinema.price : null);
-    console.log('Selected Cinema Price:', selectedCinema ? selectedCinema.price : null);
   };
-  
 
   const handleTarihSecim = (tarih) => {
     setSecilenTarih(tarih);    
@@ -74,23 +111,23 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
     setOgrenciBiletSayisi(newOgrenciBiletSayisi);
     const newTotalPrice = newOgrenciBiletSayisi * ogrenciPrice + tamBiletSayisi * tamPrice;
     setTotalPrice(newTotalPrice);
-};
+  };
   
   const handleOgrenciAzalt = () => {
-  if (ogrenciBiletSayisi > 0) {
-    const newOgrenciBiletSayisi = ogrenciBiletSayisi - 1;
-    setOgrenciBiletSayisi(newOgrenciBiletSayisi);
-    const newTotalPrice = newOgrenciBiletSayisi * ogrenciPrice + tamBiletSayisi * tamPrice;
-    setTotalPrice(newTotalPrice);
-  }
-};
+    if (ogrenciBiletSayisi > 0) {
+      const newOgrenciBiletSayisi = ogrenciBiletSayisi - 1;
+      setOgrenciBiletSayisi(newOgrenciBiletSayisi);
+      const newTotalPrice = newOgrenciBiletSayisi * ogrenciPrice + tamBiletSayisi * tamPrice;
+      setTotalPrice(newTotalPrice);
+    }
+  };
   
   const handleTamArtir = () => {
     const newTamBiletSayisi = tamBiletSayisi + 1;
     setTamBiletSayisi(newTamBiletSayisi);
     const newTotalPrice = ogrenciBiletSayisi * ogrenciPrice + newTamBiletSayisi * tamPrice;
     setTotalPrice(newTotalPrice);
-};
+  };
   
   const handleTamAzalt = () => {
     if (tamBiletSayisi > 0) {
@@ -99,7 +136,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
       const newTotalPrice = ogrenciBiletSayisi * ogrenciPrice + newTamBiletSayisi * tamPrice;
       setTotalPrice(newTotalPrice);
     }
-};
+  };
 
   const handleSubmit = async () => {
     const biletAlData = {
@@ -123,9 +160,15 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log('MySQL response:', responseData);
         alert('Ticket successfully saved!');
-        navigate('/seats2', { state: { totalPrice } });
+        const gelen = await getSeatsBySelections();
+        setCevap(gelen);
+        navigate('/seats2', { 
+          state: { 
+            totalPrice: totalPrice,
+            cevap: gelen
+          } 
+        });
       } else {
         const errorData = await response.json();
         console.error('Error saving ticket:', errorData);
@@ -143,6 +186,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
     setSecilenSeans('');
     setOgrenciBiletSayisi(0);
     setTamBiletSayisi(0);
+    setTotalPrice(0);
   };
 
   return (
@@ -160,7 +204,7 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
           <select value={secilenSinema} onChange={(e) => handleSinemaSecim(e.target.value)}>
             <option value="">Please choose a cinema</option>
             {sinemalar.map((sinema, index) => (
-              <option key={sinema.id} value={sinema.id}>{sinema.name}</option>
+              <option key={sinema.id} value={sinema.ID}>{sinema.name}</option>
             ))}
           </select>
         </div>
@@ -188,31 +232,28 @@ const BiletAlSayfasi = ({ ogrenciBiletSayisi, setOgrenciBiletSayisi, tamBiletSay
           <span className="bilet-sayac-yazi">{ogrenciBiletSayisi}</span>
           <button onClick={handleOgrenciArtir}>+</button>
         </div>
-
         <div className="bilet-sayac2">
           <label>Adult: </label>
           <button onClick={handleTamAzalt}>-</button>
           <span className="bilet-sayac-yazi">{tamBiletSayisi}</span>
           <button onClick={handleTamArtir}>+</button>
           {selectedCinemaPrice && (
-          <span className="secimler">
-            Price: {totalPrice} TL
-          </span>)}
+            <span className="secimler">
+              Price: {totalPrice} TL
+            </span>
+          )}
         </div>
-
-        
       </div>
       <img src={movie.image} alt={movie.name} className="film-posteri" />
-      <div className="film-adi"> </div>
-
-      
-
+      <div className="film-adi">{movie.name}</div>
       <button
         className="blue-btn6"
         disabled={!secilenSinema || !secilenTarih || !secilenSeans || (ogrenciBiletSayisi === 0 && tamBiletSayisi === 0)}
-        onClick={handleSubmit}> Seat Selection
+        onClick={handleSubmit}
+      >
+        Seat Selection
       </button>
-
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 };

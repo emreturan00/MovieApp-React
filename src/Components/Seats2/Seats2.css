@@ -27,7 +27,9 @@
   display: block;
   text-align: center;
 }
-
+.seat.occupied {
+  background-color: red !important;
+}
 /* Seat Area and Payment Button Adjustments for top navigation compatibility */
 .seat-area {
   padding-top: 50px; /* Space for top navigation bar */
