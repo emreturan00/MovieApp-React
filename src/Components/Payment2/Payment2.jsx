@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Payment2.css'; // Ensure the CSS is correctly imported
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
@@ -23,12 +23,11 @@ async function postPaymentData(paymentData) {
 function Payment() {
     
     const location = useLocation();
-    const totalPrice = location.state.totalPrice;
-
+    const totalPrice = location.state ? location.state.totalPrice : 0;
     console.log('Total Price:', totalPrice);
 
     const [paymentData, setPaymentData] = useState({
-        amount: '',
+        amount: totalPrice,
         cardNumber: '',
         expiry: '',
         cvv: '',
@@ -37,6 +36,10 @@ function Payment() {
     });
     const [errors, setErrors] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
+
+    useEffect(() => {
+        setPaymentData(prevData => ({ ...prevData, amount: totalPrice }));
+    }, [totalPrice]);
 
     const validateForm = () => {
         let tempErrors = {};
@@ -100,7 +103,7 @@ function Payment() {
                 )}
                 <div className="input-group55">
                     <label>Payment Amount:</label>
-                    <input name="amount" type="text" value={paymentData.amount} onChange={handleChange} />
+                    <input name="amount" type="text" value={paymentData.amount} onChange={handleChange} readOnly/>
                 </div>
                 <div className="input-group55">
                     <label>Payment Method:</label>

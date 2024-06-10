@@ -190,61 +190,26 @@ function MainPage() {
                 <div className="time"></div>
             </div>
 
-            <div className="currently-showing">CURRENTLY SHOWING</div>
+            <div className="content-wrapper">
+                <div className="currently-showing">CURRENTLY SHOWING</div>
+                <button class="choose-genre">Choose Genre</button>
 
-           
-            <div className="page-content-currently">
+                <div className="page-content-currently">
                     {cardItems.map((item, index) => (
-                    <div key={index} className="movie-card">
-                        <img src={item.image} alt={item.title}  />
-                        <h2>{item.title}</h2>
-                        <p>{item.copy}</p>
-                        <button className="buy-ticket-button" onClick={() => navigate('/buy-ticket2', { state: { movie: item } })}>Buy Ticket</button>
-                    </div>
+                        <div key={index} className="movie-card">
+                            <img src={item.image} alt={item.title}  />
+                            <h2>{item.title}</h2>
+                            <p>{item.copy}</p>
+                            <button className="buy-ticket-button" onClick={() => navigate('/buy-ticket2', { state: { movie: item } })}>Buy Ticket</button>
+                        </div>
                     ))}
                 </div>
+            </div>
 
 
-            <div className="btns2">
-            <a
-    className={`blue-btn2 ${locationMenuOpen ? 'active' : ''}`}
-    href="#"
-    onClick={(e) => handleButtonClick('location', e)}
-    aria-expanded={locationMenuOpen}
->
-    Choose Location
-</a>
-{locationMenuOpen && (
-    <div className="menu" onClick={(e) => e.stopPropagation()}>
-        <a href="#" onClick={() => handleLocationClick('Option 1')}>Option 1</a>
-        <a href="#" onClick={() => handleLocationClick('Option 2')}>Option 2</a>
-        <a href="#" onClick={() => handleLocationClick('Option 3')}>Option 3</a>
-    </div>
-)}
+            
 
-<a
-    className={`blue-btn2 ${genreMenuOpen ? 'active' : ''}`}
-    href="#"
-    onClick={(e) => handleButtonClick('genre', e)}
-    aria-expanded={genreMenuOpen}
->
-    Choose Genre
-</a>
-{genreMenuOpen && (
-    <div className="menu" onClick={(e) => e.stopPropagation()}>
-        <a href="#" onClick={() => handleGenreClick('Action')}>Action</a>
-        <a href="#" onClick={() => handleGenreClick('Comedy')}>Comedy</a>
-        <a href="#" onClick={() => handleGenreClick('Drama')}>Drama</a>
-        <a href="#" onClick={() => handleGenreClick('Horror')}>Horror</a>
-        <a href="#" onClick={() => handleGenreClick('Romance')}>Romance</a>
-        <a href="#" onClick={() => handleGenreClick('Sci-Fi')}>Sci-Fi</a>
-        <a href="#" onClick={() => handleGenreClick('Thriller')}>Thriller</a>
-        <a href="#" onClick={() => handleGenreClick('Western')}>Western</a>
-    </div>
-)}
-
-
-</div>
+{/* 
 <div className="selected-items">
   
     <ul>
@@ -255,27 +220,18 @@ function MainPage() {
             </li>
         ))}
     </ul>
-</div>
+</div> */}
 
        
 
-            <footer className="site-footer2">
-                <div className="container2">
-                    <div className="row">
-                        
-
-                        <div className="col-xs-6 col-md-3 text-center">
-                            <ul className="footer-links2">
+            <footer className="site-footer2">                        
+                         <ul className="footer-links2">
                                 <li><button>Home</button></li>
                                 <li><button>Contact Us</button></li>
                                 <li><button>About Us</button></li>
                                 <li><button>My Profile</button></li>
                                 <li><button>Log in</button></li>
                             </ul>
-                        </div>
-                    </div>
-                    <hr />
-                </div>
             </footer>
 
             

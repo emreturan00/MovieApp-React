@@ -21,6 +21,20 @@
     }
 }
 
+.content-wrapper {
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.currently-showing {
+    order: 1;
+}
+
+.page-content-currently {
+    order: 2;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -38,6 +52,8 @@ body {
     
    
 }
+
+
 
 
 h2 {
@@ -615,7 +631,7 @@ img {
 
 
 .currently-showing {
-    position: absolute;
+    height: 850px;
     bottom: -43cm; 
     left: 50%;
     transform: translateX(-50%);
@@ -625,6 +641,19 @@ img {
     font-weight: bold;
     text-shadow: 0 0 10px rgba(3, 188, 244, 0.7), 0 0 20px rgba(3, 188, 244, 0.7), 0 0 40px rgba(3, 188, 244, 0.7);
     z-index: 1000; 
+}
+
+.choose-genre {
+    display: block;
+    width: 200px;
+    height: 50px;
+    margin: 20px auto;
+    background-color: #03bcf4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.5em;
 }
 
 
@@ -725,18 +754,21 @@ a {
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
 .menu {
-    justify-content: center;
-    margin-left: 30em;
-    margin-top: 130em;
-    display: none; 
+    display: none;
     position: absolute;
-    top: calc(100% + 5px); 
-    left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 1000; 
+    top: 100%; /* This positions the top edge of the menu at the bottom edge of the container */
+    left: 0; /* This aligns the left edge of the menu with the left edge of the container */
+    /* Other styles for the menu */
+}
+
+.blue-btn2.active + .menu {
+    display: block;
 }
 
 .menu.active {
@@ -789,6 +821,7 @@ a {
 
 
 .site-footer2 {
+    gap: 1cm;
     align-items: center;
     background-color: #03bcf4;
     padding: 40px 0 20px; 
@@ -798,15 +831,11 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1cm; 
     height: 10cm;
-    margin-top: -10cm; 
-
-     
+    margin-top: 600px; 
     bottom: 0; 
     left: 0; 
     width: 100%
-    
 }
 
 
@@ -889,6 +918,7 @@ body {
 }
 
 .page-content-currently {
+    
     display: grid;
     grid-gap: 1rem;
     padding: 1rem;
@@ -910,6 +940,7 @@ body {
 }
 
 .card-currently {  
+    
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -988,11 +1019,13 @@ body {
     background-image: url('../Assets/img4.jpg');
 }
 .movie-card img {
+    
     height: 450px;
     width: auto;
 }
 
 .content-currently {
+    
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1008,12 +1041,14 @@ body {
 }
 
 .title-currently {
+    
     font-size: 1.3rem;
     font-weight: bold;
     line-height: 1.2;
 }
 
 .copy-currently {
+    
     font-family: var(--font-serif-currently);
     font-size: 1.125rem;
     font-style: italic;
