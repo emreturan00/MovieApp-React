@@ -184,8 +184,8 @@ function MainPage() {
                     ))}
                 </div>
                 <div className="arrows">
-                    <button id="prev" onClick={showPreviousSlider}>&lt;</button>
-                    <button id="next" onClick={showNextSlider}>&gt;</button>
+                    <button id="prev" onClick={showNextSlider}>&lt;</button>
+                    <button id="next" onClick={showPreviousSlider}>&gt;</button>
                 </div>
                 <div className="time"></div>
             </div>
