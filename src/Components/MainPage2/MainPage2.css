@@ -269,7 +269,6 @@ button {
   .buy-ticket-button {
     position: relative; /* Ensure button is properly positioned */
     z-index: 10; /* Ensure button is above other elements */
-    background-color: #ff6f61; /* Example button color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -278,7 +277,6 @@ button {
   }
   
   .buy-ticket-button:hover {
-    background-color: #ff4a3d; /* Example hover effect */
   }
   
 
