@@ -222,6 +222,71 @@ h2 {
     color: #eee;
 }
 
+button {
+    z-index: 10; /* Ensure buttons are on top of other elements */
+    position: relative; /* Ensure proper positioning */
+}
+
+.header {
+    z-index: 1; /* Example: other elements with lower z-index */
+}
+
+.container {
+    overflow: visible; /* Ensure container does not clip the buttons */
+}
+
+
+.content-wrapper {
+    /* Add necessary styles for content-wrapper */
+    position: relative;
+  }
+  
+  .currently-showing {
+    /* Styles for the currently showing text */
+    z-index: 1; /* Ensure it is above background elements */
+  }
+  
+  .choose-genre {
+    /* Styles for the choose genre button */
+    z-index: 2; /* Ensure it is above background elements */
+  }
+  
+  .page-content-currently {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Add spacing between cards */
+    position: relative; /* Ensure it is properly positioned */
+  }
+  
+  .movie-card {
+    position: relative; /* Ensure cards are positioned properly */
+    z-index: 5; /* Ensure cards are above lower z-index elements */
+    width: 200px; /* Example width, adjust as needed */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Example box shadow for better visibility */
+  }
+  
+  .buy-ticket-button {
+    position: relative; /* Ensure button is properly positioned */
+    z-index: 10; /* Ensure button is above other elements */
+    background-color: #ff6f61; /* Example button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px; /* Add margin to separate from other elements */
+  }
+  
+  .buy-ticket-button:hover {
+    background-color: #ff4a3d; /* Example hover effect */
+  }
+  
+
+
+
+
+
+
 .thumbnail {
     position: absolute;
     bottom: 50px;
@@ -533,6 +598,8 @@ img {
   margin-inline: auto; 
   margin-top: 9cm; 
 }
+
+
 
 .card {
   min-width: 70px;

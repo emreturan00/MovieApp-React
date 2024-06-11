@@ -192,19 +192,25 @@ function MainPage() {
 
             <div className="content-wrapper">
                 <div className="currently-showing">CURRENTLY SHOWING</div>
-                <button class="choose-genre">Choose Genre</button>
+                <button className="choose-genre">Choose Genre</button>
 
                 <div className="page-content-currently">
                     {cardItems.map((item, index) => (
-                        <div key={index} className="movie-card">
-                            <img src={item.image} alt={item.title}  />
-                            <h2>{item.title}</h2>
-                            <p>{item.copy}</p>
-                            <button className="buy-ticket-button" onClick={() => navigate('/buy-ticket2', { state: { movie: item } })}>Buy Ticket</button>
-                        </div>
+                    <div key={index} className="movie-card">
+                        <img src={item.image} alt={item.title} />
+                        <h2>{item.title}</h2>
+                        <p>{item.copy}</p>
+                        <button
+                        className="buy-ticket-button"
+                        onClick={() => navigate('/buy-ticket2', { state: { movie: item } })}
+                        >
+                        Buy Ticket
+                        </button>
+                    </div>
                     ))}
                 </div>
             </div>
+
 
 
             
